@@ -1,0 +1,15 @@
+[07-Sep-2025 23:57:56 Europe/Berlin] Updating user with filtered attributes: Array
+(
+    [FULLNAME] => Test User
+    [USERNAME] => testuser
+    [PASS] => 206c80413b9a96c1312cc346b7d2517b84463edd
+)
+
+[07-Sep-2025 23:57:56 Europe/Berlin] Attribute pairs: Array
+(
+    [0] => FULLNAME='Test User'
+    [1] => USERNAME='testuser'
+    [2] => PASS='206c80413b9a96c1312cc346b7d2517b84463edd'
+)
+
+[07-Sep-2025 23:57:56 Europe/Berlin] Executing SQL: UPDATE tblusers SET FULLNAME='Test User', USERNAME='testuser', PASS='206c80413b9a96c1312cc346b7d2517b84463edd' WHERE USERID=34567

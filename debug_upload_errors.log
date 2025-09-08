@@ -1,0 +1,16 @@
+[14-Jul-2025 01:34:47 Europe/Berlin] === Debug Upload Started ===
+[14-Jul-2025 01:34:47 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:34:47 Europe/Berlin] POST Data: {"conversationTurn":"1","questionType":"feedback_response","currentEssentialQuestion":"1","duration":"7.754","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:34:47 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_1_feedback_response.webm","full_path":"conversation_turn_1_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\phpC900.tmp","error":0,"size":2262490}}
+[14-Jul-2025 01:34:47 Europe/Berlin] Test 1: Checking config file access
+[14-Jul-2025 01:34:47 Europe/Berlin] Config file exists
+[14-Jul-2025 01:34:47 Europe/Berlin] Test 2: Including config file
+[14-Jul-2025 01:34:47 Europe/Berlin] Document Root: C:/xampp/htdocs
+[14-Jul-2025 01:34:47 Europe/Berlin] Web Root: /eris/
+[14-Jul-2025 01:34:47 Europe/Berlin] Config file included successfully
+[14-Jul-2025 01:34:47 Europe/Berlin] Test 3: Testing database connection
+[14-Jul-2025 01:34:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Undefined constant "LIB_PATH" in C:\xampp\htdocs\eris\include\database.php:2
+Stack trace:
+#0 C:\xampp\htdocs\eris\debug-upload.php(40): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\eris\include\database.php on line 2

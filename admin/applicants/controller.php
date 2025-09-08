@@ -120,63 +120,70 @@ switch ($action) {
 	}
 
 	function doEdit(){
-	if(isset($_POST['save'])){
+		global $mydb;
+		if(isset($_POST['submit'])){
 
-		if ( $_POST['FNAME'] == "" OR $_POST['LNAME'] == ""
-			OR $_POST['MNAME'] == "" OR $_POST['ADDRESS'] == "" 
-			OR $_POST['TELNO'] == "") {
-			$messageStats = false;
-			message("All fields are required!","error");
-			redirect('index.php?view=add');
-		}else{	
+			if (empty($_POST['REGISTRATIONID']) || empty($_POST['STATUS'])) {
+				message("Registration ID and Status are required!", "error");
+				redirect('index.php');
+				return;
+			}
 
-			$birthdate =  $_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
+			$registration_id = $_POST['REGISTRATIONID'];
+			$status = $_POST['STATUS'];
+			$remarks = isset($_POST['REMARKS']) ? $_POST['REMARKS'] : $status;
 
-			$age = date_diff(date_create($birthdate),date_create('today'))->y;
-		 	if ($age < 20 ){
-		       message("Invalid age. 20 years old and above is allowed.", "error");
-		       redirect("index.php?view=edit&id=".$_POST['EMPLOYEEID']);
+			try {
+				// Update the job registration status
+				$sql = "UPDATE tbljobregistration SET 
+						REMARKS = '{$remarks}',
+						STATUS = '{$status}',
+						DATETIMEAPPROVED = NOW(),
+						PENDINGAPPLICATION = 0,
+						HVIEW = 0
+						WHERE REGISTRATIONID = '{$registration_id}'";
+				
+				$mydb->setQuery($sql);
+				$result = $mydb->executeQuery();
 
-		    }else{
+				if ($result) {
+					// Check if feedback record exists
+					$feedback_check = "SELECT * FROM tblfeedback WHERE REGISTRATIONID = '{$registration_id}'";
+					$mydb->setQuery($feedback_check);
+					$feedback_exists = $mydb->loadSingleResult();
 
-		    	@$datehired = date_format(date_create($_POST['DATEHIRED']),'Y-m-d');
+					if ($feedback_exists) {
+						// Update existing feedback
+						$update_feedback = "UPDATE tblfeedback SET FEEDBACK = '{$remarks}' WHERE REGISTRATIONID = '{$registration_id}'";
+						$mydb->setQuery($update_feedback);
+						$mydb->executeQuery();
+					} else {
+						// Get applicant ID for feedback record
+						$get_applicant = "SELECT APPLICANTID FROM tbljobregistration WHERE REGISTRATIONID = '{$registration_id}'";
+						$mydb->setQuery($get_applicant);
+						$applicant_data = $mydb->loadSingleResult();
+						
+						if ($applicant_data) {
+							// Insert new feedback record
+							$insert_feedback = "INSERT INTO tblfeedback (APPLICANTID, REGISTRATIONID, FEEDBACK, FEEDBACK_TYPE) 
+												 VALUES ('{$applicant_data->APPLICANTID}', '{$registration_id}', '{$remarks}', 'Application')";
+							$mydb->setQuery($insert_feedback);
+							$mydb->executeQuery();
+						}
+					}
 
-					$emp = New Employee(); 
-					$emp->EMPLOYEEID 		= $_POST['EMPLOYEEID'];
-					$emp->FNAME				= $_POST['FNAME']; 
-					$emp->LNAME				= $_POST['LNAME'];
-					$emp->MNAME 	   		= $_POST['MNAME'];
-					$emp->ADDRESS			= $_POST['ADDRESS'];  
-					$emp->BIRTHDATE	 		= $birthdate;
-					$emp->BIRTHPLACE		= $_POST['BIRTHPLACE'];  
-					$emp->AGE			    = $age;
-					$emp->SEX 				= $_POST['optionsRadios']; 
-					$emp->TELNO				= $_POST['TELNO'];
-					$emp->CIVILSTATUS		= $_POST['CIVILSTATUS']; 
-					$emp->POSITION			= trim($_POST['POSITION']);
-					// $emp->DEPARTMENTID		= $_POST['DEPARTMENTID'];
-					// $emp->DIVISIONID		= $_POST['DIVISIONID'];
-					$emp->EMP_EMAILADDRESS		= $_POST['EMP_EMAILADDRESS'];
-					$emp->EMPUSERNAME		= $_POST['EMPLOYEEID'];
-					$emp->EMPPASSWORD		= sha1($_POST['EMPLOYEEID']);
-					$emp->DATEHIRED			=  @$datehired;
-					$emp->COMPANYID			= $_POST['COMPANYID'];
-
-					$emp->update($_POST['EMPLOYEEID']);
- 
-
-				message("Employee has been updated!", "success");
-				// redirect("index.php?view=view&id=".$_POST['EMPLOYEEID']);
-		       redirect("index.php?view=edit&id=".$_POST['EMPLOYEEID']);
-	    	}
-
-
+					message("Application status updated successfully!", "success");
+					redirect("index.php?view=view&id=" . $registration_id); 
+				} else {
+					message("Failed to update application status.", "error");
+					redirect("index.php?view=edit&id=" . $registration_id);
+				}
+			} catch (Exception $e) {
+				message("Error updating application: " . $e->getMessage(), "error");
+				redirect("index.php?view=edit&id=" . $registration_id);
+			}
 		}
-  	
-	 
-	}
-
-} 
+	} 
 	function doDelete(){
 		
 		// if (isset($_POST['selector'])==''){

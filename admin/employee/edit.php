@@ -1,11 +1,13 @@
-<?php  
-  if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
-     }
+<?php
+require_once("../../include/initialize.php");
+
+if (!isset($_SESSION['ADMIN_USERID'])){
+    redirect(web_root."admin/index.php");
+}
   
 // $autonum = New Autonumber();
 // $res = $autonum->single_autonumber(2);
- @$empid = $_GET['id'];
+ $empid = isset($_GET['id']) ? $_GET['id'] : '';
     if($empid==''){
   redirect("index.php");
 }
@@ -149,10 +151,10 @@
         </div>
  
 
-                 <form class="form-horizontal span6" action="controller.php?action=edit" method="POST"> 
+                 <form class="form-horizontal span6" action="controller.php?action=edit" method="POST" id="editEmployeeForm" novalidate> 
               
 
-                <input  id="EMPLOYEEID" name="EMPLOYEEID" type="hidden" value="<?php echo $emp->EMPLOYEEID;?>"  >
+                <input  id="EMPLOYEEID" name="EMPLOYEEID" type="hidden" value="<?php echo htmlspecialchars($emp->EMPLOYEEID);?>"  >
                    
                 
                  <div class="form-group">
@@ -162,7 +164,7 @@
 
                         <div class="col-md-8"> 
                            <input class="form-control input-sm" id="FNAME" name="FNAME" placeholder=
-                              "Firstname" type="text" value="<?php echo $emp->FNAME;?>"   autocomplete="off">
+                              "Firstname" type="text" value="<?php echo htmlspecialchars($emp->FNAME);?>"   autocomplete="off" required minlength="2">
                         </div>
                       </div>
                     </div>
@@ -174,7 +176,7 @@
 
                         <div class="col-md-8"> 
                           <input  class="form-control input-sm" id="LNAME" name="LNAME" placeholder=
-                              "Lastname"   value="<?php echo $emp->LNAME;?>"    autocomplete="off">
+                              "Lastname"   value="<?php echo htmlspecialchars($emp->LNAME);?>"    autocomplete="off" required minlength="2">
                           </div>
                       </div>
                     </div>
@@ -186,7 +188,7 @@
 
                         <div class="col-md-8"> 
                           <input  class="form-control input-sm" id="MNAME" name="MNAME" placeholder=
-                              "Middle Name"   value="<?php echo $emp->MNAME;?>"     autocomplete="off">
+                              "Middle Name"   value="<?php echo htmlspecialchars($emp->MNAME);?>"     autocomplete="off">
                            <!-- <input class="form-control input-sm" id="DEPARTMENT_DESC" name="DEPARTMENT_DESC" placeholder=
                               "Description" type="text" value=""> -->
                         </div>
@@ -201,7 +203,7 @@
                       <div class="col-md-8">
                         
                          <textarea class="form-control input-sm" id="ADDRESS" name="ADDRESS" placeholder=
-                            "Address" type="text" value="" required   autocomplete="off"><?php echo $emp->ADDRESS;?></textarea>
+                            "Address" type="text" value="" required   autocomplete="off"><?php echo htmlspecialchars($emp->ADDRESS);?></textarea>
                       </div>
                     </div>
                   </div> 
@@ -229,7 +231,7 @@
                             <span class="input-group-addon"> 
                              <i class="fa fa-calendar"></i> 
                             </span>  
-                             <input class="form-control input-sm date_picker" id="BIRTHDATE" name="BIRTHDATE" placeholder="Date of Birth" type="text"    value="<?php echo date_format(date_create($emp->BIRTHDATE),'m/d/Y');?>" required  autocomplete="off">
+                             <input class="form-control input-sm date_picker" id="BIRTHDATE" name="BIRTHDATE" placeholder="Date of Birth" type="text"    value="<?php echo htmlspecialchars(date_format(date_create($emp->BIRTHDATE),'m/d/Y'));?>" required  autocomplete="off">
                         </div>
                       </div>
                     </div>
@@ -244,7 +246,7 @@
                                     
                                      <textarea class="form-control input-sm" id="BIRTHPLACE" name="BIRTHPLACE" placeholder=
                                         "Place of Birth" type="text" value="" required   
-                                        autocomplete="off"><?php echo $emp->BIRTHPLACE;?></textarea>
+                                        autocomplete="off"><?php echo htmlspecialchars($emp->BIRTHPLACE);?></textarea>
                                   </div>
                                 </div>
                               </div> 
@@ -258,7 +260,7 @@
                                 <div class="col-md-8">
                                   
                                    <input class="form-control input-sm" id="TELNO" name="TELNO" placeholder=
-                                      "Conact No." type="text" any value="<?php echo $emp->TELNO;?>" required   autocomplete="off">
+                                      "Conact No." type="text" any value="<?php echo htmlspecialchars($emp->TELNO);?>" required   autocomplete="off" pattern="[0-9\-\+\s]+">
                                 </div>
                               </div>
                             </div> 
@@ -282,12 +284,22 @@
                                 <div class="col-md-8">
                                   
                                    <input class="form-control input-sm" id="POSITION" name="POSITION" placeholder=
-                                      "Postion" type="text" any value="<?php echo $emp->POSITION;?>" required   autocomplete="off">
+                                      "Postion" type="text" any value="<?php echo htmlspecialchars($emp->POSITION);?>" required   autocomplete="off">
                                 </div>
                               </div>
                             </div>
 
+                             
+                            <div class="form-group">
+                              <div class="col-md-8">
+                                <label class="col-md-4 control-label" for=
+                                "WORKSTATS">Work Status:</label>
 
+                                <div class="col-md-8">
+                                  <?php echo $workstatus; ?>
+                                </div>
+                              </div>
+                            </div>
                              
                             <div class="form-group">
                               <div class="col-md-8">
@@ -295,7 +307,7 @@
                                 "EMP_HIREDDATE">Hired Date:</label> 
                                 <div class="col-md-8">
                                     <div class="input-group date  " data-provide="datepicker" data-date="2012-12-21T15:25:00Z">
-                                   <input type="input" class="form-control input-sm date_picker" id="HIREDDATE" name="EMP_HIREDDATE" placeholder="mm/dd/yyyy"   autocomplete="false" value="<?php echo date_format(date_create($emp->DATEHIRED),'m/d/Y'); ?>"/> 
+                                   <input type="input" class="form-control input-sm date_picker" id="HIREDDATE" name="EMP_HIREDDATE" placeholder="mm/dd/yyyy"   autocomplete="false" value="<?php echo htmlspecialchars(date_format(date_create($emp->DATEHIRED),'m/d/Y')); ?>"/> 
                                      <span class="input-group-addon"><i class="fa fa-th"></i></span>
                                  </div>
                                 </div>
@@ -307,7 +319,7 @@
                                 <label class="col-md-4 control-label" for=
                                 "EMP_EMAILADDRESS">Email Address:</label> 
                                 <div class="col-md-8">
-                                   <input type="Email" class="form-control input-sm" id="EMP_EMAILADDRESS" name="EMP_EMAILADDRESS" placeholder="Email Address"   autocomplete="false" value="<?php echo  $emp->EMP_EMAILADDRESS; ?>"/> 
+                                   <input type="Email" class="form-control input-sm" id="EMP_EMAILADDRESS" name="EMP_EMAILADDRESS" placeholder="Email Address"   autocomplete="false" value="<?php echo htmlspecialchars($emp->EMP_EMAILADDRESS); ?>"/> 
                                 </div>
                               </div>
                             </div>  
@@ -359,4 +371,32 @@
         </form>
 
 
+             
+<script>
+// Simple client-side validation for instant feedback
+if (window.jQuery) {
+    $(function() {
+        $('#editEmployeeForm').on('submit', function(e) {
+            var valid = true;
+            $(this).find('[required]').each(function() {
+                if (!$(this).val()) {
+                    $(this).addClass('is-invalid');
+                    valid = false;
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+            if (!valid) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+            }
+        });
+    });
+}
+</script>
+<style>
+.is-invalid { border: 1px solid #d9534f; background: #f2dede; }
+.form-group { margin-bottom: 15px; }
+.btn { margin-right: 5px; }
+</style>
              

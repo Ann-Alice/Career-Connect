@@ -1,0 +1,58 @@
+[14-Jul-2025 01:37:51 Europe/Berlin] === Test Upload Started ===
+[14-Jul-2025 01:37:51 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:37:51 Europe/Berlin] POST Data: {"conversationTurn":"2","questionType":"feedback_response","currentEssentialQuestion":"0","duration":"9.379","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:37:51 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_2_feedback_response.webm","full_path":"conversation_turn_2_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php989E.tmp","error":0,"size":1399478}}
+[14-Jul-2025 01:37:51 Europe/Berlin] Document Root: C:/xampp/htdocs
+[14-Jul-2025 01:37:51 Europe/Berlin] Web Root: /eris/
+[14-Jul-2025 01:37:51 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[14-Jul-2025 01:37:51 Europe/Berlin] Using username: root
+[14-Jul-2025 01:37:51 Europe/Berlin] Successfully connected to MySQL server
+[14-Jul-2025 01:37:51 Europe/Berlin] Successfully selected database: erisdb
+[14-Jul-2025 01:37:51 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:37:51 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:37:51 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:37:51 Europe/Berlin] Moving file from C:\xampp\tmp\php989E.tmp to uploads/interviews/9/conversation_turn_2_feedback_response.webm
+[14-Jul-2025 01:37:51 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 
+             0, 
+             'uploads/interviews/9/conversation_turn_2_feedback_response.webm', 
+             9.379, 
+             NOW(), 
+             2, 
+             'feedback_response')
+[14-Jul-2025 01:37:51 Europe/Berlin] Error in test upload: Table 'erisdb.tblinterviewrecordings' doesn't exist
+[14-Jul-2025 01:37:51 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\include\database.php(47): mysqli_query(Object(mysqli), 'INSERT INTO tbl...')
+#1 C:\xampp\htdocs\eris\test-upload-endpoint.php(128): Database->executeQuery()
+#2 {main}
+[14-Jul-2025 01:37:51 Europe/Berlin] === Test Upload Ended ===
+[14-Jul-2025 01:38:58 Europe/Berlin] === Test Upload Started ===
+[14-Jul-2025 01:38:58 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:38:58 Europe/Berlin] POST Data: {"conversationTurn":"3","questionType":"feedback_response","currentEssentialQuestion":"2","duration":"10.651","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:38:58 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_3_feedback_response.webm","full_path":"conversation_turn_3_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php9D6F.tmp","error":0,"size":4624936}}
+[14-Jul-2025 01:38:58 Europe/Berlin] Document Root: C:/xampp/htdocs
+[14-Jul-2025 01:38:58 Europe/Berlin] Web Root: /eris/
+[14-Jul-2025 01:38:58 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[14-Jul-2025 01:38:58 Europe/Berlin] Using username: root
+[14-Jul-2025 01:38:58 Europe/Berlin] Successfully connected to MySQL server
+[14-Jul-2025 01:38:58 Europe/Berlin] Successfully selected database: erisdb
+[14-Jul-2025 01:38:58 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:38:58 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:38:58 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:38:58 Europe/Berlin] Moving file from C:\xampp\tmp\php9D6F.tmp to uploads/interviews/9/conversation_turn_3_feedback_response.webm
+[14-Jul-2025 01:38:58 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 
+             2, 
+             'uploads/interviews/9/conversation_turn_3_feedback_response.webm', 
+             10.651, 
+             NOW(), 
+             3, 
+             'feedback_response')
+[14-Jul-2025 01:38:58 Europe/Berlin] Error in test upload: Table 'erisdb.tblinterviewrecordings' doesn't exist
+[14-Jul-2025 01:38:58 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\include\database.php(47): mysqli_query(Object(mysqli), 'INSERT INTO tbl...')
+#1 C:\xampp\htdocs\eris\test-upload-endpoint.php(128): Database->executeQuery()
+#2 {main}
+[14-Jul-2025 01:38:58 Europe/Berlin] === Test Upload Ended ===

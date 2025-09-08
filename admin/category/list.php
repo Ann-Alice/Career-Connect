@@ -27,18 +27,22 @@
 				  		$mydb->setQuery("SELECT * FROM `tblcategory`");
 				  		$cur = $mydb->loadResultList();
 
-						foreach ($cur as $result) {
-				  		echo '<tr>';
-				  		// echo '<td width="5%" align="center"></td>';
-				  		// echo '<td>
-				  		//      <input type="checkbox" name="selector[]" id="selector[]" value="'.$result->CATEGORYID. '"/>
-				  		// 		' . $result->CATEGORIES.'</a></td>';
-				  			echo '<td>' . $result->CATEGORY.'</td>';
-				  		echo '<td align="center"><a title="Edit" href="index.php?view=edit&id='.$result->CATEGORYID.'" class="btn btn-primary btn-xs  ">  <span class="fa fa-edit fw-fa"></a>
-				  		     <a title="Delete" href="controller.php?action=delete&id='.$result->CATEGORYID.'" class="btn btn-danger btn-xs  ">  <span class="fa  fa-trash-o fw-fa "></a></td>';
-				  		// echo '<td></td>';
-				  		echo '</tr>';
-				  	} 
+						if ($cur) {
+							foreach ($cur as $result) {
+								echo '<tr>';
+								// echo '<td width="5%" align="center"></td>';
+								// echo '<td>
+								//      <input type="checkbox" name="selector[]" id="selector[]" value="'.$result->CATEGORYID. '"/>
+								// 		' . $result->CATEGORIES.'</a></td>';
+								echo '<td>' . htmlspecialchars($result->CATEGORY) . '</td>';
+								echo '<td align="center"><a title="Edit" href="index.php?view=edit&id=' . htmlspecialchars($result->CATEGORYID) . '" class="btn btn-primary btn-xs"><span class="fa fa-edit fw-fa"></span></a> '
+									. '<a title="Delete" href="controller.php?action=delete&id=' . htmlspecialchars($result->CATEGORYID) . '" class="btn btn-danger btn-xs" onclick="return confirm(\'Are you sure you want to delete this category?\')"><span class="fa fa-trash-o fw-fa"></span></a></td>';
+								// echo '<td></td>';
+								echo '</tr>';
+							}
+						} else {
+							echo '<tr><td colspan="2" class="text-center">No categories found</td></tr>';
+						}
 				  	?>
 				  </tbody>
 					
@@ -55,3 +59,25 @@
 				</form>
 	
  <div class="table-responsive">	 
+<script>
+$(document).ready(function() {
+    $('#dash-table').DataTable({
+        responsive: true,
+        "order": [[0, "asc"]],
+        "pageLength": 10,
+        "language": {
+            "search": "Search:",
+            "lengthMenu": "Show _MENU_ entries per page",
+            "info": "Showing _START_ to _END_ of _TOTAL_ entries"
+        }
+    });
+});
+</script>
+<style>
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+.btn {
+    margin-right: 5px;
+}
+</style>

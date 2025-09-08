@@ -34,7 +34,7 @@
 						</div>
 						<div>
 							<h4 style="margin: 0 0 5px; color: #2c3e50; font-size: 18px;">Our Location</h4>
-							<p style="margin: 0; color: #555;">2880 Broadway, New York, NY 10025</p>
+							<p style="margin: 0; color: #555;">Accra, Ghana</p>
 						</div>
 					</div>
 					
@@ -44,7 +44,7 @@
 						</div>
 						<div>
 							<h4 style="margin: 0 0 5px; color: #2c3e50; font-size: 18px;">Call Us</h4>
-							<p style="margin: 0; color: #555;">+1 (800) 123-4567</p>
+							<p style="margin: 0; color: #555;">+(233) 257649875</p>
 						</div>
 					</div>
 					

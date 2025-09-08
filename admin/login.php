@@ -1,157 +1,158 @@
-<?php
-require_once("../include/initialize.php");
-
- ?>
-  <?php
- // login confirmation
-  if(isset($_SESSION['ADMIN_USERID'])){
-    redirect(web_root."admin/index.php");
-  }
-  ?>
-   
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ERIS | Log in</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.5 -->
-  <link rel="stylesheet" href="<?php echo web_root;?>bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo web_root;?>plugins/font-awesome/css/font-awesome.min.css"> 
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo web_root;?>dist/css/AdminLTE.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="<?php echo web_root;?>plugins/iCheck/square/blue.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+    <title>Login to Career Connect</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .login-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .input-container {
+            position: relative;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 18px;
+        }
+        
+        .btn-signin {
+            width: 100%;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-signin:hover {
+            background: #2980b9;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 20px;
+                padding: 30px 25px;
+                max-width: 100%;
+            }
+            
+            .login-title {
+                font-size: 22px;
+            }
+        }
+    </style>
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-<!--   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
-  </div> -->
-  <!-- /.login-logo -->
-  <div class="login-box-body" style="min-height: 400px;">
-    <h1 class="login-box-msg">Login to ERIS</h1>
-    <hr/>
-    <p><?php check_message(); ?></p>
-
-    <form action="" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username" name="user_email">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="user_pass">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-        <div class="row">
-        <!-- <div class="col-xs-8"> -->
-        <!--   <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
-          </div>
-        </div>   -->
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" name="btnLogin" class="btn btn-primary btn-block btn-flat">Sign In</button>
-        </div>
-      </div>
-        <!-- /.col -->
-      </div>
-    </form>
-
-   <!--  <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
-    </div> -->
-    <!-- /.social-auth-links -->
-
- <!--    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a> -->
-
-  </div>
-  <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
-<?php 
-
-if(isset($_POST['btnLogin'])){
-  $email = trim($_POST['user_email']);
-  $upass  = trim($_POST['user_pass']);
-  $h_upass = sha1($upass);
-  
-   if ($email == '' OR $upass == '') {
-
-      message("Invalid Username and Password!", "error");
-      redirect("login.php");
-         
-    } else {  
-  //it creates a new objects of member
-    $user = new User();
-    //make use of the static function, and we passed to parameters
-    $res = $user->userAuthentication($email, $h_upass);
-    if ($res==true) { 
-       message("You logon as ".$_SESSION['ROLE'].".","success");
-      // if ($_SESSION['ROLE']=='Administrator' || $_SESSION['ROLE']=='Cashier'){
-
-        $_SESSION['ADMIN_USERID'] = $_SESSION['USERID'];
-        $_SESSION['ADMIN_FULLNAME'] = $_SESSION['FULLNAME'] ;
-        $_SESSION['ADMIN_USERNAME'] =$_SESSION['USERNAME'];
-        $_SESSION['ADMIN_ROLE'] = $_SESSION['ROLE'];
-        $_SESSION['ADMIN_PICLOCATION'] = $_SESSION['PICLOCATION'];
-
-        unset( $_SESSION['USERID'] );
-        unset( $_SESSION['FULLNAME'] );
-        unset( $_SESSION['USERNAME'] );
-        unset( $_SESSION['PASS'] );
-        unset( $_SESSION['ROLE'] );
-        unset($_SESSION['PICLOCATION']);
-
-         redirect(web_root."admin/index.php");
-      // } 
-    }else{
-      message("Account does not exist! Please contact Administrator.", "error");
-       redirect(web_root."admin/login.php"); 
-    }
- }
- } 
- ?> 
-
-
-<!-- jQuery 2.1.4 -->
-<script src="<?php echo web_root;?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<!-- Bootstrap 3.3.5 -->
-<script src="<?php echo web_root;?>bootstrap/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="<?php echo web_root;?>plugins/iCheck/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
-    });
-  });
-</script>
+<body>
+    <div class="login-container">
+        <div class="login-title">Login to Career Connect</div>
+        
+        <form action="process.php?action=login" method="post">
+            <div class="form-group">
+                <label for="USERNAME">Username</label>
+                <div class="input-container">
+                    <input type="text" class="form-control" name="USERNAME" id="USERNAME" required>
+                    <div class="input-icon">👤</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="PASS">Password</label>
+                <div class="input-container">
+                    <input type="password" class="form-control" name="PASS" id="PASS" required>
+                    <div class="input-icon">🔒</div>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-signin">Sign In</button>
+        </form>
+        
+        <div class="copyright">© 2025 Career Connect. All rights reserved.</div>
+    </div>
 </body>
 </html>
-
- 
-
-
- 
-
-

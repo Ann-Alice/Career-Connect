@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Issues - Quick Access</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-diagnostic {
+            background: #3498db;
+            color: white;
+        }
+        .btn-diagnostic:hover {
+            background: #2980b9;
+            color: white;
+            text-decoration: none;
+        }
+        .btn-fix {
+            background: #28a745;
+            color: white;
+        }
+        .btn-fix:hover {
+            background: #218838;
+            color: white;
+            text-decoration: none;
+        }
+        .btn-clean {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-clean:hover {
+            background: #c82333;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: #2c3e50; margin-bottom: 30px;">
+            <i class="fa fa-file-text"></i> Resume Issues Resolution
+        </h1>
+        
+        <div class="card">
+            <h3 style="color: #495057;">Current Issues Identified:</h3>
+            <ul style="color: #6c757d; margin: 15px 0;">
+                <li><strong>Missing File:</strong> 27052018124027PLATENO FE95483.docx exists in database but not on server</li>
+                <li><strong>Shared Resume Problem:</strong> Multiple candidates showing the same resume (violates applicant-specific file access)</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h3 style="color: #495057;">Diagnostic & Fix Tools:</h3>
+            <p style="color: #6c757d;">Use these tools to analyze and resolve resume file issues:</p>
+            
+            <div style="margin-top: 20px;">
+                <a href="fix-resume-issues.php" class="btn-custom btn-diagnostic">
+                    <i class="fa fa-search"></i> Run Diagnostic Analysis
+                </a>
+                
+                <a href="fix-resume-issues.php?fix=1" class="btn-custom btn-fix">
+                    <i class="fa fa-wrench"></i> Fix Issues Automatically
+                </a>
+                
+                <a href="fix-resume-issues.php?clean=1" class="btn-custom btn-clean">
+                    <i class="fa fa-trash"></i> Clean Orphaned Records
+                </a>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3 style="color: #495057;">Changes Made:</h3>
+            <ul style="color: #6c757d;">
+                <li>✅ <strong>Strict Applicant-Specific File Access:</strong> Updated all file access queries to ensure each applicant has their own unique resume</li>
+                <li>✅ <strong>Enhanced Error Handling:</strong> Better file path resolution and error messages</li>
+                <li>✅ <strong>Database Relationship Fix:</strong> Files are now linked directly to applicants via USERATTACHMENTID</li>
+                <li>✅ <strong>Diagnostic Tools:</strong> Created comprehensive tools to identify and fix database issues</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h3 style="color: #495057;">Quick Actions:</h3>
+            <p style="color: #6c757d;">Additional tools for system maintenance:</p>
+            
+            <div style="margin-top: 20px;">
+                <a href="repair-file-paths.php" class="btn-custom btn-diagnostic">
+                    <i class="fa fa-folder"></i> File Path Repair Tool
+                </a>
+                
+                <a href="check-files.php" class="btn-custom btn-diagnostic">
+                    <i class="fa fa-file-o"></i> File Location Analysis
+                </a>
+                
+                <a href="../dashboard.php" class="btn-custom" style="background: #6c757d; color: white;">
+                    <i class="fa fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+        
+        <div class="alert alert-info" style="margin-top: 30px;">
+            <h4><i class="fa fa-info-circle"></i> How to Resolve Your Issue:</h4>
+            <ol>
+                <li><strong>Run Diagnostic Analysis</strong> - Click the diagnostic button above to see all issues</li>
+                <li><strong>Clean Orphaned Records</strong> - Remove database entries that reference non-existent applicants</li>
+                <li><strong>Fix Issues Automatically</strong> - Repair file path inconsistencies and ensure unique resumes per applicant</li>
+                <li><strong>Test Resume Downloads</strong> - Try downloading resumes from different candidates to verify each has their own unique file</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

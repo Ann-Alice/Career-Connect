@@ -1,0 +1,20 @@
+.chat-status.ai-speaking {
+    background: #e3f2fd;
+    color: #1976d2;
+    border-color: #bbdefb;
+    animation: pulse 1.5s infinite;
+}
+
+.chat-status.speaking {
+    background: #fff3cd;
+    color: #856404;
+    border-color: #ffeaa7;
+    animation: pulse 1s infinite;
+}
+
+.chat-message.ai {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+    margin-right: auto;
+    border-left: 4px solid #ff5722;
+} 

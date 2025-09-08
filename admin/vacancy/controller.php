@@ -1,4 +1,3 @@
-
 <?php
 require_once ("../../include/initialize.php");
  	 if (!isset($_SESSION['ADMIN_USERID'])){
@@ -29,26 +28,23 @@ switch ($action) {
 		if(isset($_POST['save'])){
  // `COMPANYID`, `OCCUPATIONTITLE`, `REQ_NO_EMPLOYEES`, `SALARIES`, `DURATION_EMPLOYEMENT`, `QUALIFICATION_WORKEXPERIENCE`, `JOBDESCRIPTION`, `PREFEREDSEX`, `SECTOR_VACANCY`
  
-		if ( $_POST['COMPANYID'] == "None") {
+		if ( empty($_POST['COMPANYID']) || $_POST['COMPANYID'] == "") {
 			$messageStats = false;
 			message("All field is required!","error");
 			redirect('index.php?view=add');
 		}else{	
-			$sql = "SELECT * FROM tblcategory where CATEGORYID = {$_POST['CATEGORY']}";
-			$mydb->setQuery($sql);
-			$cat = $mydb->loadSingleResult();
-			$_POST['CATEGORY']=$cat->CATEGORY;
 			$job = New Jobs();
 			$job->COMPANYID							= $_POST['COMPANYID']; 
 			$job->CATEGORY							= $_POST['CATEGORY']; 
 			$job->OCCUPATIONTITLE					= $_POST['OCCUPATIONTITLE'];
 			$job->REQ_NO_EMPLOYEES					= $_POST['REQ_NO_EMPLOYEES'];
-			$job->SALARIES							= $_POST['SALARIES'];
+			$job->SALARIES							= is_numeric($_POST['SALARIES']) ? $_POST['SALARIES'] : preg_replace('/[^0-9.]/', '', $_POST['SALARIES']);
 			$job->DURATION_EMPLOYEMENT				= $_POST['DURATION_EMPLOYEMENT'];
 			$job->QUALIFICATION_WORKEXPERIENCE		= $_POST['QUALIFICATION_WORKEXPERIENCE'];
 			$job->JOBDESCRIPTION					= $_POST['JOBDESCRIPTION'];
 			$job->PREFEREDSEX						= $_POST['PREFEREDSEX'];
 			$job->SECTOR_VACANCY					= $_POST['SECTOR_VACANCY']; 
+			$job->JOBSTATUS							= 'Open'; // Provide default status
 			$job->DATEPOSTED						= date('Y-m-d H:i');
 			$job->create();
 
@@ -63,26 +59,23 @@ switch ($action) {
 	function doEdit(){
 		global $mydb;
 		if(isset($_POST['save'])){
-			if ( $_POST['COMPANYID'] == "None") {
+			if ( empty($_POST['COMPANYID']) || $_POST['COMPANYID'] == "") {
 				$messageStats = false;
 				message("All field is required!","error");
 				redirect('index.php?view=add');
 			}else{	
-				$sql = "SELECT * FROM tblcategory where CATEGORYID = {$_POST['CATEGORY']}";
-				$mydb->setQuery($sql);
-				$cat = $mydb->loadSingleResult();
-				$_POST['CATEGORY']=$cat->CATEGORY;
 				$job = New Jobs();
 				$job->COMPANYID							= $_POST['COMPANYID']; 
 				$job->CATEGORY							= $_POST['CATEGORY']; 
 				$job->OCCUPATIONTITLE					= $_POST['OCCUPATIONTITLE'];
 				$job->REQ_NO_EMPLOYEES					= $_POST['REQ_NO_EMPLOYEES'];
-				$job->SALARIES							= $_POST['SALARIES'];
+				$job->SALARIES							= is_numeric($_POST['SALARIES']) ? $_POST['SALARIES'] : preg_replace('/[^0-9.]/', '', $_POST['SALARIES']);
 				$job->DURATION_EMPLOYEMENT				= $_POST['DURATION_EMPLOYEMENT'];
 				$job->QUALIFICATION_WORKEXPERIENCE		= $_POST['QUALIFICATION_WORKEXPERIENCE'];
 				$job->JOBDESCRIPTION					= $_POST['JOBDESCRIPTION'];
 				$job->PREFEREDSEX						= $_POST['PREFEREDSEX'];
 				$job->SECTOR_VACANCY					= $_POST['SECTOR_VACANCY']; 
+				$job->JOBSTATUS							= isset($_POST['JOBSTATUS']) ? $_POST['JOBSTATUS'] : 'Open'; // Provide default status
 				$job->update($_POST['JOBID']);
 
 				message("Job Vacancy has been updated!", "success");

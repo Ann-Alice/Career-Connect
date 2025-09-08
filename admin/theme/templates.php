@@ -15,8 +15,8 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="<?php echo web_root;?>plugins/font-awesome/css/font-awesome.min.css">
 
-        <!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/dataTables.bootstrap.css">  -->
-        <!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables.min.css">  -->
+        <!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/datatables/dataTables.bootstrap.css">  -->
+        <!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/datatables/jquery.dataTables.min.css">  -->
 
         <!-- Ionicons -->
         <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
@@ -34,7 +34,7 @@
         <!-- Date Picker -->
         <link href="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables.min.css">  
+        <link rel="stylesheet" href="<?php echo web_root;?>plugins/datatables/jquery.dataTables.min.css">  
 
         <!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/datepicker/datepicker3.css"> -->
         <!-- Daterange picker -->
@@ -51,9 +51,9 @@
     <!-- Logo -->
     <a href="<?php echo web_root;?>/admin/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>ERIS</b></span>
+      <span class="logo-mini"><b>Career Connect</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>ERIS</b></span>
+      <span class="logo-lg"><b>Career Connect</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -67,24 +67,31 @@
  
           <?php
               $user = New User();
-              $singleuser = $user->single_user($_SESSION['ADMIN_USERID']);
+              $singleuser = null;
+              $admin_userid = isset($_SESSION['ADMIN_USERID']) ? $_SESSION['ADMIN_USERID'] : null;
+              $admin_fullname = isset($_SESSION['ADMIN_FULLNAME']) ? $_SESSION['ADMIN_FULLNAME'] : 'Admin User';
+              $admin_piclocation = isset($_SESSION['ADMIN_PICLOCATION']) ? $_SESSION['ADMIN_PICLOCATION'] : 'avatar.jpg';
+              
+              if ($admin_userid) {
+                  $singleuser = $user->single_user($admin_userid);
+              }
 
           ?>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu" style="padding-right: 15px;"  >
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $singleuser->FULLNAME; ?></span>
+              <img src="<?php echo web_root.'admin/user/'. ($singleuser ? $singleuser->PICLOCATION : $admin_piclocation);?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $singleuser ? $singleuser->FULLNAME : $admin_fullname; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header"> 
-                <img data-target="#menuModal"  data-toggle="modal"  src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="img-circle" alt="User Image" />  
+                <img data-target="#menuModal"  data-toggle="modal"  src="<?php echo web_root.'admin/user/'. ($singleuser ? $singleuser->PICLOCATION : $admin_piclocation);?>" class="img-circle" alt="User Image" />  
               </li> 
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo web_root.'admin/user/index.php?view=view&id='.$_SESSION['ADMIN_USERID'] ;?>" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php echo web_root.'admin/user/index.php?view=view&id='.($admin_userid ?: '1');?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo web_root ;?>admin/logout.php" class="btn btn-default btn-flat">Sign out</a>
@@ -148,72 +155,8 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      
- 
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu"> 
-        <li  class="<?php echo (currentpage() == 'index.php') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>  
-          </a> 
-        </li> 
-        <li class="<?php echo (currentpage() == 'company') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/company/">
-            <i class="fa fa-building"></i> <span>Company</span> 
-          </a>
-        </li>
-        <li class="<?php echo (currentpage() == 'vacancy') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/vacancy/">
-            <i class="fa fa-suitcase"></i> <span>Vacancy</span> 
-          </a>
-        </li>
-        <li class="<?php echo (currentpage() == 'employee') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/employee/">
-            <i class="fa fa-users"></i> <span>Employee</span> 
-          </a>
-        </li> 
-        <li class="<?php echo (currentpage() == 'applicants') ? "active" : false;?>" > 
-          <a href="<?php echo web_root ;?>admin/applicants/">
-            <i class="fa fa-users"></i> <span>Applicants</span> 
-            <span class="label label-primary pull-right">
-              <?php
-                $sql = "SELECT count(*) as 'APPL' FROM `tbljobregistration` WHERE `PENDINGAPPLICATION`=1";
-                $mydb->setQuery($sql);
-                $pending = $mydb->loadSingleResult();
-                echo $pending->APPL;
-              ?>
-            </span>
-          </a>
-        </li> 
-        <li class="<?php echo (currentpage() == 'category') ? "active" : false;?>" > 
-          <a href="<?php echo web_root ;?>admin/category/">
-            <i class="fa fa-list"></i> <span>Category</span>  
-          </a>
-        </li> 
-       <!--  <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo web_root ;?>pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-          </ul>
-        </li> -->
-         
-         <li class="<?php echo (currentpage() == 'user') ? "active" : false;?>">
-          <a href="<?php echo web_root; ?>admin/user/">
-            <i class="fa fa-user"></i> <span>Manage Users</span> </a>
-        </li>
-        
-      </ul>
+      <?php include(__DIR__ . '/../includes/menu.php'); ?>
     </section>
-    <!-- /.sidebar -->
   </aside>
    <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -265,10 +208,7 @@
 
 
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.2
-    </div>
-    <strong>Copyright &copy; 2018 <a href="#">Janno Palacios</a>.</strong> All rights
+    <strong>Copyright &copy; 2025 <a href="#">Connect GH</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -283,8 +223,8 @@
       <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
       <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
 
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/dataTables/dataTables.bootstrap.min.js" ></script> 
-      <script src="<?php echo web_root; ?>plugins/datatables/jquery.dataTables.min.js"></script> 
+      <script src="<?php echo web_root; ?>plugins/datatables/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="<?php echo web_root; ?>plugins/datatables/dataTables.bootstrap.min.js" ></script> 
 
       <script src="<?php echo web_root; ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
@@ -305,15 +245,19 @@
 
 <script>
   $(function () {
-    $("#dash-table").DataTable();
-    $('#dash-table2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
+    if ($("#dash-table").length) {
+      $("#dash-table").DataTable();
+    }
+    if ($('#dash-table2').length) {
+      $('#dash-table2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+      });
+    }
   });
 
 $('input[data-mask]').each(function() {

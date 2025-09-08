@@ -1,89 +1,101 @@
 <?php
-    if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
-     }
+require_once("../../include/initialize.php");
+
+if (!isset($_SESSION['ADMIN_USERID'])){
+  redirect(web_root."admin/index.php");
+ }
 
 
-  $companyid = $_GET['id'];
-  $company = New Company();
-  $res = $company->single_company($companyid);
+$companyid = $_GET['id'];
+$company = New Company();
+$res = $company->single_company($companyid);
 
 ?> 
- <form class="form-horizontal span6" action="controller.php?action=edit" method="POST">
-
-       
-            <div class="row">
-         <div class="col-lg-12">
-            <h1 class="page-header">Add New Company</h1>
+<div class="row" style="margin-top: 24px;">
+  <div class="col-lg-8 col-md-10 col-sm-12" style="margin: 0 auto;">
+    <div class="panel panel-default" style="border-radius: 14px; box-shadow: 0 4px 18px rgba(0,0,0,0.08); padding: 28px 32px 18px 32px; background: #f7fafd;">
+      <div class="panel-heading" style="background: none; border: none; padding: 0 0 18px 0;">
+        <h1 class="page-header" style="margin: 0; font-size: 2rem; color: #337ab7; font-weight: 600; display: flex; align-items: center; gap: 10px;">
+          <i class="fa fa-building"></i> Edit Company
+        </h1>
+      </div>
+      <form class="form-horizontal" action="controller.php?action=edit" method="POST" style="margin-top: 10px;">
+        <input type="hidden" name="COMPANYID" value="<?php echo $res->COMPANYID ;?>">
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="COMPANYNAME" style="font-weight: 500;">Company Name <span style="color: #d9534f;">*</span></label>
+          <div class="col-md-8">
+            <input class="form-control input-lg" id="COMPANYNAME" name="COMPANYNAME" placeholder="Enter company name" type="text" value="<?php echo $res->COMPANYNAME ;?>" autocomplete="off" required>
           </div>
-          <!-- /.col-lg-12 -->
-       </div> 
-                  <div class="form-group">
-                    <div class="col-md-8">
-                      <label class="col-md-4 control-label" for=
-                      "COMPANYNAME">Company Name:</label>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="COMPANYADDRESS" style="font-weight: 500;">Company Address <span style="color: #d9534f;">*</span></label>
+          <div class="col-md-8">
+            <textarea class="form-control input-lg" id="COMPANYADDRESS" name="COMPANYADDRESS" placeholder="Enter company address" required style="min-height: 60px;" autocomplete="off"><?php echo $res->COMPANYADDRESS ;?></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="COMPANYCONTACTNO" style="font-weight: 500;">Company Contact No. <span style="color: #d9534f;">*</span></label>
+          <div class="col-md-8">
+            <input class="form-control input-lg" id="COMPANYCONTACTNO" name="COMPANYCONTACTNO" placeholder="Enter contact number" type="text" value="<?php echo $res->COMPANYCONTACTNO ;?>" autocomplete="off" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="COMPANYSTATUS" style="font-weight: 500;">Company Status</label>
+          <div class="col-md-8">
+            <select class="form-control input-lg" id="COMPANYSTATUS" name="COMPANYSTATUS">
+              <option value="Active" <?php echo ($res->COMPANYSTATUS=='Active') ? 'selected' : '' ;?>>Active</option>
+              <option value="Inactive" <?php echo ($res->COMPANYSTATUS=='Inactive') ? 'selected' : '' ;?>>Inactive</option>
+              <option value="Suspended" <?php echo ($res->COMPANYSTATUS=='Suspended') ? 'selected' : '' ;?>>Suspended</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="COMPANYMISSION" style="font-weight: 500;">Company Mission</label>
+          <div class="col-md-8">
+            <textarea class="form-control input-lg" id="COMPANYMISSION" name="COMPANYMISSION" placeholder="Enter company mission" style="min-height: 80px;" autocomplete="off"><?php echo $res->COMPANYMISSION ;?></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-8 col-md-offset-4" style="display: flex; gap: 10px;">
+            <button class="btn btn-primary btn-lg" name="save" type="submit" style="border-radius: 25px; min-width: 120px;">
+              <span class="fa fa-save"></span> Save
+            </button>
+            <a href="index.php" class="btn btn-default btn-lg" style="border-radius: 25px; min-width: 120px;">
+              <span class="fa fa-arrow-left"></span> Back
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
-                      <div class="col-md-8">
-
-                        <input type="hidden" name="COMPANYID" value="<?php echo $res->COMPANYID ;?>">
-                         <input class="form-control input-sm" id="COMPANYNAME" name="COMPANYNAME" placeholder=
-                            "Company Name" type="text" value="<?php echo $res->COMPANYNAME ;?>">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-8">
-                      <label class="col-md-4 control-label" for=
-                      "COMPANYADDRESS">Company Address:</label> 
-                      <div class="col-md-8">
-                        <textarea class="form-control input-sm" id="COMPANYADDRESS" name="COMPANYADDRESS" placeholder=
-                            "Company Address" type="text" value="" required  onkeyup="javascript:capitalize(this.id, this.value);" autocomplete="off"><?php echo $res->COMPANYADDRESS ;?></textarea>
-                         <!-- <input class="form-control input-sm" id="COMPANYADDRESS" name="COMPANYADDRESS" placeholder="Company Address" value="<?php echo $res->COMPANYADDRESS ;?>" />  -->
-                      </div>
-                    </div>
-                  </div> 
-                  <div class="form-group">
-                    <div class="col-md-8">
-                      <label class="col-md-4 control-label" for=
-                      "COMPANYCONTACTNO">Company Contact No.:</label>
-
-                      <div class="col-md-8">
-                         <input class="form-control input-sm" id="COMPANYCONTACTNO" name="COMPANYCONTACTNO" placeholder=
-                            "Company Contact No." type="text" value="<?php echo $res->COMPANYCONTACTNO ;?>">
-                      </div>
-                    </div>
-                  </div>
-
-               <!--  <div class="form-group">
-                    <div class="col-md-8">
-                      <label class="col-md-4 control-label" for=
-                      "COMPANYMISSION">Company Mission:</label>
-
-                      <div class="col-md-8">
-                        
-                         <textarea class="form-control input-sm" id="COMPANYMISSION" name="COMPANYMISSION" placeholder=
-                            "Company Mission" type="text" value="" required  onkeyup="javascript:capitalize(this.id, this.value);" autocomplete="off"><?php echo $res->COMPANYMISSION ;?></textarea>
-                      </div>
-                    </div>
-                  </div>  -->
-
-
-
-            
-             <div class="form-group">
-                    <div class="col-md-8">
-                      <label class="col-md-4 control-label" for=
-                      "idno"></label>
-
-                      <div class="col-md-8">
-                      <!-- <a href="index.php" class="btn btn_fixnmix"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<strong>Back</strong></a> -->
-                      <button class="btn btn-primary btn-sm" name="save" type="submit" ><span class="fa fa-save fw-fa"></span> Save</button>
-                   
-                      </div>
-                    </div>
-                  </div>
-
-              
-   
-        </form>
+<style>
+@media (max-width: 991px) {
+  .panel.panel-default {
+    padding: 10px 2px 2px 2px !important;
+  }
+  .form-control.input-lg {
+    font-size: 15px;
+    height: 40px;
+  }
+  .panel-heading h1 {
+    font-size: 1.2rem !important;
+  }
+  .btn.btn-primary.btn-lg, .btn.btn-default.btn-lg {
+    font-size: 14px;
+    padding: 8px 10px;
+    min-width: 90px;
+  }
+}
+.form-control.input-lg, textarea.form-control.input-lg {
+  font-size: 16px;
+  height: 46px;
+  border-radius: 8px;
+}
+textarea.form-control.input-lg {
+  min-height: 60px;
+  resize: vertical;
+}
+</style>
        

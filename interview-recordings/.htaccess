@@ -1,0 +1,17 @@
+# Protect interview recordings from direct access
+# Only allow access through admin PHP scripts
+
+<FilesMatch "\.(mp4|webm|avi|mov)$">
+    Order Deny,Allow
+    Deny from all
+    # Allow access only from localhost for development
+    Allow from 127.0.0.1
+    Allow from ::1
+</FilesMatch>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Custom error pages
+ErrorDocument 403 "Access denied - Interview recordings are protected"
+ErrorDocument 404 "Recording not found"

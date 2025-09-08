@@ -8,14 +8,18 @@
 	-------------------------------------------------- */
 body {
 	font-family: 'Open Sans', sans-serif;
-	color: #353535;
+	color: #2c3e50;
+	background-color: #f8f9fa;
 }
 .content {
-	padding: 30px;
+	padding: 40px 0;
 	min-height: 500px;
 }
 .content h1 {
 	text-align: center;
+	color: #2c3e50;
+	margin-bottom: 30px;
+	font-weight: 600;
 }
 .content .content-footer p {
 	color: #6d6d6d;
@@ -31,24 +35,33 @@ body {
 	:: Table Filter
 	-------------------------------------------------- */
 .panel {
-	border: 1px solid #ddd;
-	background-color: #fcfcfc;
+	border: none;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+	margin-bottom: 30px;
 }
 .panel .btn-group {
 	margin: 15px 0 30px;
 } 
 .table-filter {
 	background-color: #fff;
+	border: none;
+}
+.table-filter tbody tr {
 	border-bottom: 1px solid #eee;
+	transition: all 0.3s ease;
 }
 .table-filter tbody tr:hover {
 	cursor: pointer;
-	background-color: #eee;
+	background-color: #f8f9fa;
+	transform: translateY(-2px);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 .table-filter tbody tr td {
-	padding: 10px;
+	padding: 20px;
 	vertical-align: middle;
-	border-top-color: #eee;
+	border-top: none;
 }
 .table-filter tbody tr.selected td {
 	background-color: #eee;
@@ -108,6 +121,91 @@ body {
 .table-filter .media .summary {
 	font-size: 14px;
 }
+
+.search-summary {
+	background-color: #f8f9fa;
+	padding: 15px 20px;
+	border-radius: 6px;
+	margin-bottom: 25px;
+	border-left: 4px solid #3498db;
+}
+
+.search-summary p {
+	margin: 0;
+	color: #2c3e50;
+	font-size: 16px;
+}
+
+.table-container {
+	margin-top: 20px;
+}
+
+.media {
+	display: flex;
+	align-items: flex-start;
+}
+
+.media .fa-building-o {
+	font-size: 24px;
+	color: #3498db;
+	background: #e8f4fc;
+	padding: 15px;
+	border-radius: 8px;
+	margin-right: 20px;
+}
+
+.media-body {
+	flex: 1;
+}
+
+.media .title {
+	margin: 0 0 10px 0;
+}
+
+.media .title a {
+	color: #2c3e50;
+	font-size: 18px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.media .title a:hover {
+	color: #3498db;
+}
+
+.media .title span {
+	font-size: 14px;
+	color: #7f8c8d;
+	font-weight: normal;
+}
+
+.media-meta {
+	font-size: 13px;
+	color: #95a5a6;
+	margin-bottom: 5px;
+}
+
+.summary {
+	color: #34495e;
+	font-size: 14px;
+	line-height: 1.6;
+	margin: 0;
+}
+
+.no-results {
+	text-align: center;
+	padding: 40px;
+	color: #7f8c8d;
+	font-size: 16px;
+}
+
+.no-results i {
+	font-size: 48px;
+	color: #bdc3c7;
+	margin-bottom: 15px;
+	display: block;
+}
 </style>
 <div class="container">
 	<div class="row">
@@ -115,89 +213,83 @@ body {
 		<section class="content">
 			 
 			<div class="col-md-12 ">
-				<div class="panel panel-default">
+				<div class="panel">
 					<div class="panel-body">
-						<div class="pull-left">
-							<div class="btn-group">
-								<?php 
+						<div class="search-summary">
+							<?php 
+							$search = isset($_POST['SEARCH']) ? ($_POST['SEARCH']!='') ? $_POST['SEARCH'] : 'All' : 'All';
+							$company = isset($_POST['COMPANY']) ? ($_POST['COMPANY']!='') ? $_POST['COMPANY'] : 'All' : 'All';
+							$category = isset($_POST['CATEGORY']) ? ($_POST['CATEGORY']!='') ? $_POST['CATEGORY'] : 'All' : 'All';
 
-
-								 $search = isset($_POST['SEARCH']) ? ($_POST['SEARCH']!='') ? $_POST['SEARCH'] : 'All' : 'All';
-								 $company = isset($_POST['COMPANY']) ? ($_POST['COMPANY']!='') ? $_POST['COMPANY'] : 'All' : 'All';
-								 $category = isset($_POST['CATEGORY']) ? ($_POST['CATEGORY']!='') ? $_POST['CATEGORY'] : 'All' : 'All';
-
-								switch ($searchfor) {
-									case 'bycompany':
-										# code...
-									echo 'Result : '  . $search . ' | Company : ' . $company;
-										break;
-									case 'advancesearch':
-										# code... 
-									echo 'Result : '  . $search . ' | Company : ' . $company . ' | Function : ' . $category; 
-									    break;
-									case 'byfunction':
-										# code... 
-									echo 'Result : '  . $search . ' | Function : ' . $category; 
-									    break;
-
-									case 'bytitle':
-										# code... 
-									echo 'Result : '  . $search; 
-									    break;
-									
-									default:
-										# code...
-										break;
-								}
-
-
-								?>
-							</div>
+							switch ($searchfor) {
+								case 'bycompany':
+									echo '<p><i class="fa fa-search"></i> Showing results for: <strong>' . $search . '</strong> in company: <strong>' . $company . '</strong></p>';
+									break;
+								case 'advancesearch':
+									echo '<p><i class="fa fa-search"></i> Showing results for: <strong>' . $search . '</strong> in company: <strong>' . $company . '</strong> and function: <strong>' . $category . '</strong></p>';
+									break;
+								case 'byfunction':
+									echo '<p><i class="fa fa-search"></i> Showing results for: <strong>' . $search . '</strong> in function: <strong>' . $category . '</strong></p>';
+									break;
+								case 'bytitle':
+									echo '<p><i class="fa fa-search"></i> Showing results for: <strong>' . $search . '</strong></p>';
+									break;
+								default:
+									break;
+							}
+							?>
 						</div>
 						<div class="table-container">
 							<table class="table table-filter">
 								<tbody>
 									<?php 
+									$search = isset($_POST['SEARCH']) ? $_POST['SEARCH'] : '';
+									$company = isset($_POST['COMPANY']) ? $_POST['COMPANY'] : '';
+									$category = isset($_POST['CATEGORY']) ? $_POST['CATEGORY'] : '';
 
-									 $search = isset($_POST['SEARCH']) ? $_POST['SEARCH'] : '';
-									 $company = isset($_POST['COMPANY']) ? $_POST['COMPANY'] : '';
-									 $category = isset($_POST['CATEGORY']) ? $_POST['CATEGORY'] : '';
+									// Sanitize inputs
+									$search = addslashes($search);
+									$company = addslashes($company);
+									$category = addslashes($category);
 
-										$sql = "SELECT * FROM `tbljob` j, `tblcompany` c 
-										WHERE j.`COMPANYID`=c.`COMPANYID` AND COMPANYNAME LIKE '%{$company}%' AND CATEGORY LIKE '%{$category}%' AND (`OCCUPATIONTITLE` LIKE '%{$search}%' OR `JOBDESCRIPTION` LIKE '%{$search}%' OR `QUALIFICATION_WORKEXPERIENCE` LIKE '%{$search}%')";
-										$mydb->setQuery($sql);
-										$cur = $mydb->executeQuery();
-										$maxrow = $mydb->num_rows($cur);
+									$sql = "SELECT * FROM `tbljob` j, `tblcompany` c 
+									WHERE j.`COMPANYID`=c.`COMPANYID` AND c.`COMPANYNAME` LIKE '%{$company}%' AND j.`CATEGORY` LIKE '%{$category}%' AND (j.`OCCUPATIONTITLE` LIKE '%{$search}%' OR j.`JOBDESCRIPTION` LIKE '%{$search}%' OR j.`QUALIFICATION_WORKEXPERIENCE` LIKE '%{$search}%')";
+									$mydb->setQuery($sql);
+									$cur = $mydb->executeQuery();
+									$maxrow = $mydb->num_rows($cur);
 
-										if ($maxrow > 0) {
-											# code... 
+									if ($maxrow > 0) {
 										$res = $mydb->loadResultList();
 										foreach ($res as $row) { 
 									?>
 									<tr>  
 										<td> 
 											<div class="media">
-												<a href="#" class="pull-left">
-													<!-- <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo"> -->
-											     <span class="fa fa-building-o"></span>
-												</a>
+												<div class="fa fa-building-o"></div>
 												<div class="media-body">
-													<span class="media-meta pull-right"><?php echo $row->OCCUPATIONTITLE; ?></span>
+													<span class="media-meta"><?php echo $row->OCCUPATIONTITLE; ?></span>
 													<h4 class="title">
 														<a href="index.php?q=viewjob&search=<?php echo $row->JOBID ?>">
-														<?php echo $row->OCCUPATIONTITLE; ?> 
-													    </a>
-														<span class="pull-right pagado">(Company <?php echo $row->COMPANYNAME ?>)</span>
+															<?php echo $row->OCCUPATIONTITLE; ?> 
+														</a>
+														<span class="pull-right"><?php echo $row->COMPANYNAME ?></span>
 													</h4>
 													<p class="summary"><?php echo $row->JOBDESCRIPTION; ?></p>
 												</div>
 											</div> 
 										</td>
 									</tr>
-								<?php } }else {
-									echo '<tr><td>No result found!.....</td></tr>';
-
-								}?>
+								<?php } } else { ?>
+								<tr>
+									<td>
+										<div class="no-results">
+											<i class="fa fa-search"></i>
+											<p>No results found matching your search criteria.</p>
+											<p>Try adjusting your search terms or filters.</p>
+										</div>
+									</td>
+								</tr>
+								<?php } ?>
 								 
 								</tbody>
 							</table>

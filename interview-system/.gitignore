@@ -1,0 +1,36 @@
+# Configuration
+config.php
+.env
+
+# Dependencies
+/vendor/
+__pycache__/
+*.pyc
+
+# Generated files
+/uploads/*
+/reports/*
+!uploads/.gitkeep
+!reports/.gitkeep
+
+# Logs
+*.log
+error.log
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# AI Models
+/models/*
+!models/.gitkeep
+
+# Temporary files
+*.tmp
+*.temp 

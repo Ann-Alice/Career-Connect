@@ -80,7 +80,9 @@
             
         ?>
 
-          <!-- <h1><?php echo $applicant->FNAME .' '.$applicant->MNAME.' '.$applicant->LNAME; ?>  </h1> -->
+        <?php include('interview-notifications.php'); ?>
+
+        <!-- <h1><?php echo $applicant->FNAME .' '.$applicant->MNAME.' '.$applicant->LNAME; ?>  </h1> -->
 <?php 
     // if ($view =="message") { 
     //  require_once("message.php");

@@ -1,0 +1,210 @@
+[04-Sep-2025 12:08:22 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:08:22 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:08:22 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:08:22 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:08:22 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:08:22 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:08:22 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:08:22 Europe/Berlin] Using username: root
+[04-Sep-2025 12:08:22 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:08:22 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:08:22 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:08:22 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:08:57 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:08:57 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:08:57 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:08:57 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:08:57 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:08:57 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:08:57 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:08:57 Europe/Berlin] Using username: root
+[04-Sep-2025 12:08:57 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:08:57 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:08:57 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:08:57 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:09:31 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:09:31 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:09:31 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:09:31 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:09:31 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:09:31 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:09:31 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:09:31 Europe/Berlin] Using username: root
+[04-Sep-2025 12:09:31 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:09:31 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:09:31 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:09:31 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:29:06 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:29:06 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:29:06 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:29:06 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:29:06 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:29:06 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:29:06 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:29:06 Europe/Berlin] Using username: root
+[04-Sep-2025 12:29:06 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:29:06 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:29:06 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:29:06 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:29:36 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:29:36 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:29:36 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:29:36 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:29:36 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:29:36 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:29:36 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:29:36 Europe/Berlin] Using username: root
+[04-Sep-2025 12:29:36 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:29:36 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:29:36 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:29:36 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:29:50 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:29:50 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:29:50 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:29:50 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:29:50 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:29:50 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:29:50 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:29:50 Europe/Berlin] Using username: root
+[04-Sep-2025 12:29:50 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:29:50 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:29:50 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:29:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:31:43 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:31:43 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:31:43 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:31:43 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:31:43 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:31:43 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:31:43 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:31:43 Europe/Berlin] Using username: root
+[04-Sep-2025 12:31:43 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:31:43 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:31:43 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:31:43 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:31:56 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:31:56 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:31:56 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:31:56 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:31:56 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:31:56 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:31:56 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:31:56 Europe/Berlin] Using username: root
+[04-Sep-2025 12:31:56 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:31:56 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:31:56 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:31:56 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:34:59 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:34:59 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:34:59 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:34:59 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:34:59 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:34:59 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:34:59 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:34:59 Europe/Berlin] Using username: root
+[04-Sep-2025 12:34:59 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:34:59 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:34:59 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:34:59 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:35:16 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:35:16 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:35:16 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:35:16 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:35:16 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:35:16 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:35:16 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:35:16 Europe/Berlin] Using username: root
+[04-Sep-2025 12:35:16 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:35:16 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:35:16 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:35:16 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:59:15 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:59:15 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:59:15 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:59:15 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:59:15 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:59:15 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:59:15 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:59:15 Europe/Berlin] Using username: root
+[04-Sep-2025 12:59:15 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:59:15 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:59:15 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:59:15 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 12:59:51 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 12:59:51 Europe/Berlin] Request Method: POST
+[04-Sep-2025 12:59:51 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 12:59:51 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 12:59:51 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 12:59:51 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 12:59:51 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 12:59:51 Europe/Berlin] Using username: root
+[04-Sep-2025 12:59:51 Europe/Berlin] Using port: 4306
+[04-Sep-2025 12:59:51 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 12:59:51 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 12:59:51 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 13:00:31 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 13:00:31 Europe/Berlin] Request Method: POST
+[04-Sep-2025 13:00:31 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 13:00:31 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 13:00:31 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 13:00:31 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 13:00:31 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 13:00:31 Europe/Berlin] Using username: root
+[04-Sep-2025 13:00:31 Europe/Berlin] Using port: 4306
+[04-Sep-2025 13:00:31 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 13:00:31 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 13:00:31 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[04-Sep-2025 13:01:11 Europe/Berlin] === Enhanced Recording Upload Started ===
+[04-Sep-2025 13:01:11 Europe/Berlin] Request Method: POST
+[04-Sep-2025 13:01:11 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[04-Sep-2025 13:01:11 Europe/Berlin] FILES Data: ["video"]
+[04-Sep-2025 13:01:11 Europe/Berlin] Document Root: C:/xampp/htdocs
+[04-Sep-2025 13:01:11 Europe/Berlin] Web Root: /eris/
+[04-Sep-2025 13:01:11 Europe/Berlin] Attempting to connect to MySQL server: localhost
+[04-Sep-2025 13:01:11 Europe/Berlin] Using username: root
+[04-Sep-2025 13:01:11 Europe/Berlin] Using port: 4306
+[04-Sep-2025 13:01:11 Europe/Berlin] Successfully connected to MySQL server on port 4306
+[04-Sep-2025 13:01:11 Europe/Berlin] Successfully selected database: erisdb
+[04-Sep-2025 13:01:11 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::bind_param() in C:\xampp\htdocs\eris\upload-recording-enhanced.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68

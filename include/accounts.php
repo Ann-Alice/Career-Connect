@@ -28,7 +28,10 @@ class User {
 			# code...
 			$_SESSION['USERID']   		= '1001000110110';
 		 	$_SESSION['FULLNAME']      	= 'Programmer';
+		 	$_SESSION['USERNAME'] 		= 'PLAZACAFE';
 		 	$_SESSION['ROLE'] 			= 'Programmer';
+		 	$_SESSION['PICLOCATION'] 	= 'avatar.jpg';
+
 		 	return true;
 		}else{
 			$mydb->setQuery("SELECT * FROM `tblusers` WHERE `USERNAME` = '". $USERNAME ."' and `PASS` = '". $h_pass ."'");
@@ -96,7 +99,7 @@ class User {
 	  // sanitize the values before submitting
 	  // Note: does not alter the actual value of each attribute
 	  foreach($this->attributes() as $key => $value){
-	    $clean_attributes[$key] = $mydb->escape_value($value);
+	    $clean_attributes[$key] = $mydb->escape_string($value);
 	  }
 	  return $clean_attributes;
 	}
@@ -133,13 +136,39 @@ class User {
 	public function update($id=0) {
 	  global $mydb;
 		$attributes = $this->sanitized_attributes();
-		$attribute_pairs = array();
+		
+		// Only update specific fields to avoid issues with auto-generated fields
+		$allowed_fields = ['FULLNAME', 'USERNAME', 'PASS', 'ROLE', 'PICLOCATION'];
+		$filtered_attributes = array();
 		foreach($attributes as $key => $value) {
+		    if (in_array($key, $allowed_fields)) {
+		        // For numeric fields, ensure we don't pass empty strings
+		        if ($key === 'IS_ACTIVE' && ($value === '' || $value === null)) {
+		            // Skip empty IS_ACTIVE values
+		            continue;
+		        } else if ($value !== null) {
+		            $filtered_attributes[$key] = $value;
+		        }
+		    }
+		}
+		
+		$attribute_pairs = array();
+		foreach($filtered_attributes as $key => $value) {
 		  $attribute_pairs[] = "{$key}='{$value}'";
 		}
+		
+		// Only proceed if we have attributes to update
+		if (empty($attribute_pairs)) {
+		    return true; // Nothing to update
+		}
+		
 		$sql = "UPDATE ".self::$tblname." SET ";
 		$sql .= join(", ", $attribute_pairs);
-		$sql .= " WHERE USERID=". $id;
+		$sql .= " WHERE USERID='". $mydb->escape_string($id) . "'";
+		
+		// Log the SQL query for debugging
+		error_log("User update SQL: " . $sql);
+		
 	  $mydb->setQuery($sql);
 	 	if(!$mydb->executeQuery()) return false; 	
 		

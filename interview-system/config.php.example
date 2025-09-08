@@ -1,0 +1,53 @@
+<?php
+// Database Configuration
+define('DB_HOST', 'localhost');
+define('DB_USER', 'your_db_user');
+define('DB_PASS', 'your_db_password');
+define('DB_NAME', 'interview_system');
+
+// File Paths
+define('UPLOAD_DIR', __DIR__ . '/uploads/');
+define('REPORTS_DIR', __DIR__ . '/reports/');
+define('MODELS_DIR', __DIR__ . '/models/');
+
+// AI Model Paths
+define('FACIAL_LANDMARK_MODEL', MODELS_DIR . 'shape_predictor_68_face_landmarks.dat');
+define('EMOTION_MODEL', MODELS_DIR . 'emotion_model.h5');
+define('POSE_MODEL', MODELS_DIR . 'pose_model.pb');
+
+// Assessment Thresholds
+define('MIN_CONFIDENCE_SCORE', 0.7);
+define('MIN_EMOTION_SCORE', 0.6);
+define('MIN_MOVEMENT_SCORE', 0.5);
+
+// API Keys (Replace with your actual API keys)
+define('OPENAI_API_KEY', 'your_openai_api_key');
+define('AZURE_SPEECH_KEY', 'your_azure_speech_key');
+define('AZURE_SPEECH_REGION', 'your_azure_region');
+
+// Email Configuration
+define('SMTP_HOST', 'smtp.yourdomain.com');
+define('SMTP_PORT', 587);
+define('SMTP_USER', 'your_smtp_username');
+define('SMTP_PASS', 'your_smtp_password');
+define('SMTP_FROM', 'interviews@yourdomain.com');
+define('SMTP_FROM_NAME', 'Interview System');
+
+// System Settings
+define('MAX_VIDEO_SIZE', 500 * 1024 * 1024); // 500MB
+define('ALLOWED_VIDEO_TYPES', ['video/mp4', 'video/webm']);
+define('SESSION_TIMEOUT', 3600); // 1 hour
+
+// Error Reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/error.log');
+
+// Security Settings
+define('ENCRYPTION_KEY', 'your_encryption_key_here');
+define('SESSION_SECURE', true);
+define('SESSION_HTTP_ONLY', true);
+
+// Time Zone
+date_default_timezone_set('UTC'); 

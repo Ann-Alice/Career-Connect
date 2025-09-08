@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>ERIS / <?php echo $title;?></title>
+<title>CAREER CONNECT / <?php echo $title;?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
@@ -11,11 +11,11 @@
 <link href="<?php echo web_root; ?>plugins/home-plugins/css/fancybox/jquery.fancybox.css" rel="stylesheet"> 
 <link href="<?php echo web_root; ?>plugins/home-plugins/css/flexslider.css" rel="stylesheet" /> 
 <link href="<?php echo web_root; ?>plugins/home-plugins/css/style.css" rel="stylesheet" />
-<!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/dataTables.bootstrap.css">  --> 
+<!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/datatables/dataTables.bootstrap.css">  --> 
 <link rel="stylesheet" href="<?php echo web_root;?>plugins/font-awesome/css/font-awesome.min.css"> 
 
-<link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables.min.css"> 
-<link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables_themeroller.css"> 
+<link rel="stylesheet" href="<?php echo web_root;?>plugins/datatables/jquery.dataTables.min.css"> 
+<link rel="stylesheet" href="<?php echo web_root;?>plugins/datatables/jquery.dataTables_themeroller.css"> 
 <!-- datetime picker CSS -->
 <link href="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <link href="<?php echo web_root; ?>plugins/datepicker/datepicker3.css" rel="stylesheet" media="screen">
@@ -147,6 +147,10 @@
                         <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='hiring'){ echo 'active'; }else{ echo ''; }} ?>"><a href="<?php echo web_root; ?>index.php?q=hiring">Hiring Now</a></li>
                         <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='About'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="<?php echo web_root; ?>index.php?q=About">About Us</a></li>
                         <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='Contact'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="<?php echo web_root; ?>index.php?q=Contact">Contact</a></li>
+                        <?php // if (isset($_SESSION['APPLICANTID'])) { ?>
+                        <?php // <li class="<?php echo isset($_SESSION['message'])? 'active' :''?>"><a href="<?php echo web_root; ?>applicant/index.php?view=message">Messages</a></li>
+                        ?>
+                        <?php // } ?>
                     </ul>
                 </div>
             </div>
@@ -275,8 +279,8 @@
 <script src="<?php echo web_root; ?>plugins/home-plugins/js/bootstrap.min.js"></script>
  
 
-<script type="text/javascript" src="<?php echo web_root; ?>plugins/dataTables/dataTables.bootstrap.min.js" ></script>  
-<script src="<?php echo web_root; ?>plugins/datatables/jquery.dataTables.min.js"></script> 
+<script src="<?php echo web_root; ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>plugins/datatables/dataTables.bootstrap.min.js" ></script> 
 
 <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>

@@ -1,0 +1,120 @@
+[14-Jul-2025 01:43:13 Europe/Berlin] === Simple Upload Started ===
+[14-Jul-2025 01:43:13 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:43:13 Europe/Berlin] POST Data: {"conversationTurn":"2","questionType":"feedback_response","currentEssentialQuestion":"0","duration":"13.711","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:43:13 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_2_feedback_response.webm","full_path":"conversation_turn_2_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php811C.tmp","error":0,"size":2006773}}
+[14-Jul-2025 01:43:13 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:43:13 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:43:13 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:43:13 Europe/Berlin] Moving file from C:\xampp\tmp\php811C.tmp to uploads/interviews/9/conversation_turn_2_feedback_response.webm
+[14-Jul-2025 01:43:13 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 0, 'uploads/interviews/9/conversation_turn_2_feedback_response.webm', 13.711, NOW(), 2, 'feedback_response')
+[14-Jul-2025 01:43:13 Europe/Berlin] Error in simple upload: Table 'erisdb.tblinterviewrecordings' doesn't exist
+[14-Jul-2025 01:43:13 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\simple-upload-fixed.php(121): mysqli_query(Object(mysqli), 'INSERT INTO tbl...')
+#1 {main}
+[14-Jul-2025 01:43:13 Europe/Berlin] === Simple Upload Ended ===
+[14-Jul-2025 01:43:34 Europe/Berlin] === Simple Upload Started ===
+[14-Jul-2025 01:43:34 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:43:34 Europe/Berlin] POST Data: {"conversationTurn":"3","questionType":"feedback_response","currentEssentialQuestion":"1","duration":"11.264","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:43:34 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_3_feedback_response.webm","full_path":"conversation_turn_3_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\phpD48F.tmp","error":0,"size":1658531}}
+[14-Jul-2025 01:43:34 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:43:34 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:43:34 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:43:34 Europe/Berlin] Moving file from C:\xampp\tmp\phpD48F.tmp to uploads/interviews/9/conversation_turn_3_feedback_response.webm
+[14-Jul-2025 01:43:34 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 1, 'uploads/interviews/9/conversation_turn_3_feedback_response.webm', 11.264, NOW(), 3, 'feedback_response')
+[14-Jul-2025 01:43:34 Europe/Berlin] Error in simple upload: Table 'erisdb.tblinterviewrecordings' doesn't exist
+[14-Jul-2025 01:43:34 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\simple-upload-fixed.php(121): mysqli_query(Object(mysqli), 'INSERT INTO tbl...')
+#1 {main}
+[14-Jul-2025 01:43:34 Europe/Berlin] === Simple Upload Ended ===
+[14-Jul-2025 01:43:52 Europe/Berlin] === Simple Upload Started ===
+[14-Jul-2025 01:43:52 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:43:52 Europe/Berlin] POST Data: {"conversationTurn":"3","questionType":"feedback_response","currentEssentialQuestion":"2","duration":"7.719","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:43:52 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_3_feedback_response.webm","full_path":"conversation_turn_3_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php1B30.tmp","error":0,"size":1146225}}
+[14-Jul-2025 01:43:52 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:43:52 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:43:52 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:43:52 Europe/Berlin] Moving file from C:\xampp\tmp\php1B30.tmp to uploads/interviews/9/conversation_turn_3_feedback_response.webm
+[14-Jul-2025 01:43:52 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 2, 'uploads/interviews/9/conversation_turn_3_feedback_response.webm', 7.719, NOW(), 3, 'feedback_response')
+[14-Jul-2025 01:43:52 Europe/Berlin] Error in simple upload: Table 'erisdb.tblinterviewrecordings' doesn't exist
+[14-Jul-2025 01:43:52 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\simple-upload-fixed.php(121): mysqli_query(Object(mysqli), 'INSERT INTO tbl...')
+#1 {main}
+[14-Jul-2025 01:43:52 Europe/Berlin] === Simple Upload Ended ===
+[14-Jul-2025 01:44:11 Europe/Berlin] === Simple Upload Started ===
+[14-Jul-2025 01:44:11 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:44:11 Europe/Berlin] POST Data: {"conversationTurn":"3","questionType":"feedback_response","currentEssentialQuestion":"3","duration":"8.507","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:44:11 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_3_feedback_response.webm","full_path":"conversation_turn_3_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php63A6.tmp","error":0,"size":1257834}}
+[14-Jul-2025 01:44:11 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:44:11 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:44:11 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:44:11 Europe/Berlin] Moving file from C:\xampp\tmp\php63A6.tmp to uploads/interviews/9/conversation_turn_3_feedback_response.webm
+[14-Jul-2025 01:44:11 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 3, 'uploads/interviews/9/conversation_turn_3_feedback_response.webm', 8.507, NOW(), 3, 'feedback_response')
+[14-Jul-2025 01:44:11 Europe/Berlin] Error in simple upload: Table 'erisdb.tblinterviewrecordings' doesn't exist
+[14-Jul-2025 01:44:11 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\simple-upload-fixed.php(121): mysqli_query(Object(mysqli), 'INSERT INTO tbl...')
+#1 {main}
+[14-Jul-2025 01:44:11 Europe/Berlin] === Simple Upload Ended ===
+[14-Jul-2025 01:47:08 Europe/Berlin] === Simple Upload Started ===
+[14-Jul-2025 01:47:08 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:47:08 Europe/Berlin] POST Data: {"conversationTurn":"2","questionType":"feedback_response","currentEssentialQuestion":"0","duration":"15.462","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:47:08 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_2_feedback_response.webm","full_path":"conversation_turn_2_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php18A7.tmp","error":0,"size":2284118}}
+[14-Jul-2025 01:47:08 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:47:08 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:47:08 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:47:08 Europe/Berlin] Moving file from C:\xampp\tmp\php18A7.tmp to uploads/interviews/9/conversation_turn_2_feedback_response.webm
+[14-Jul-2025 01:47:08 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 0, 'uploads/interviews/9/conversation_turn_2_feedback_response.webm', 15.462, NOW(), 2, 'feedback_response')
+[14-Jul-2025 01:47:08 Europe/Berlin] Upload completed successfully
+[14-Jul-2025 01:47:08 Europe/Berlin] === Simple Upload Ended ===
+[14-Jul-2025 01:47:24 Europe/Berlin] === Simple Upload Started ===
+[14-Jul-2025 01:47:24 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:47:24 Europe/Berlin] POST Data: {"conversationTurn":"3","questionType":"initial_answer","currentEssentialQuestion":"0","duration":"6.215","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:47:24 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_3_initial_answer.webm","full_path":"conversation_turn_3_initial_answer.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php543C.tmp","error":0,"size":925835}}
+[14-Jul-2025 01:47:24 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:47:24 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:47:24 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:47:24 Europe/Berlin] Moving file from C:\xampp\tmp\php543C.tmp to uploads/interviews/9/conversation_turn_3_initial_answer.webm
+[14-Jul-2025 01:47:24 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 0, 'uploads/interviews/9/conversation_turn_3_initial_answer.webm', 6.215, NOW(), 3, 'initial_answer')
+[14-Jul-2025 01:47:24 Europe/Berlin] Upload completed successfully
+[14-Jul-2025 01:47:24 Europe/Berlin] === Simple Upload Ended ===
+[14-Jul-2025 01:47:55 Europe/Berlin] === Simple Upload Started ===
+[14-Jul-2025 01:47:55 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:47:55 Europe/Berlin] POST Data: {"conversationTurn":"3","questionType":"feedback_response","currentEssentialQuestion":"1","duration":"10.814","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:47:55 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_3_feedback_response.webm","full_path":"conversation_turn_3_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\phpCD96.tmp","error":0,"size":1581903}}
+[14-Jul-2025 01:47:55 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:47:55 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:47:55 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:47:55 Europe/Berlin] Moving file from C:\xampp\tmp\phpCD96.tmp to uploads/interviews/9/conversation_turn_3_feedback_response.webm
+[14-Jul-2025 01:47:55 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 1, 'uploads/interviews/9/conversation_turn_3_feedback_response.webm', 10.814, NOW(), 3, 'feedback_response')
+[14-Jul-2025 01:47:55 Europe/Berlin] Upload completed successfully
+[14-Jul-2025 01:47:55 Europe/Berlin] === Simple Upload Ended ===
+[14-Jul-2025 01:48:57 Europe/Berlin] === Simple Upload Started ===
+[14-Jul-2025 01:48:57 Europe/Berlin] Request Method: POST
+[14-Jul-2025 01:48:57 Europe/Berlin] POST Data: {"conversationTurn":"1","questionType":"feedback_response","currentEssentialQuestion":"0","duration":"15.456","token":"2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4","registrationId":"9"}
+[14-Jul-2025 01:48:57 Europe/Berlin] FILES Data: {"video":{"name":"conversation_turn_1_feedback_response.webm","full_path":"conversation_turn_1_feedback_response.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\phpC084.tmp","error":0,"size":2274014}}
+[14-Jul-2025 01:48:57 Europe/Berlin] Database connection successful
+[14-Jul-2025 01:48:57 Europe/Berlin] Token received: 2391841ac840b92e67a21cd41f695afcce49089b46e3ad895b35b71f3314b3d4
+[14-Jul-2025 01:48:57 Europe/Berlin] Token validated successfully
+[14-Jul-2025 01:48:57 Europe/Berlin] Moving file from C:\xampp\tmp\phpC084.tmp to uploads/interviews/9/conversation_turn_1_feedback_response.webm
+[14-Jul-2025 01:48:57 Europe/Berlin] Database SQL: INSERT INTO tblinterviewrecordings 
+            (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE) 
+            VALUES 
+            ('9', 0, 'uploads/interviews/9/conversation_turn_1_feedback_response.webm', 15.456, NOW(), 1, 'feedback_response')
+[14-Jul-2025 01:48:57 Europe/Berlin] Upload completed successfully
+[14-Jul-2025 01:48:57 Europe/Berlin] === Simple Upload Ended ===

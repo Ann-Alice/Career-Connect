@@ -1,0 +1,199 @@
+[04-Sep-2025 01:51:07 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:51:07 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:51:07 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:51:07 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943467756.webm","full_path":"interview_complete_2_1756943467756.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php65D5.tmp","error":0,"size":720231}}
+[04-Sep-2025 01:51:07 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:51:07 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:51:07 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:51:07 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php65D5.tmp to uploads/interviews/consolidated/interview_complete_2_1756943467756.webm
+[04-Sep-2025 01:51:07 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:51:07 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:51:07 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:51:15 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:51:15 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:51:15 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:51:15 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943475595.webm","full_path":"interview_complete_2_1756943475595.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php846A.tmp","error":0,"size":723747}}
+[04-Sep-2025 01:51:15 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:51:15 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:51:15 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:51:15 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php846A.tmp to uploads/interviews/consolidated/interview_complete_2_1756943475595.webm
+[04-Sep-2025 01:51:15 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:51:15 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:51:15 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:51:17 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:51:17 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:51:17 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:51:17 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943477095.webm","full_path":"interview_complete_2_1756943477095.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php8A47.tmp","error":0,"size":734076}}
+[04-Sep-2025 01:51:17 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:51:17 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:51:17 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:51:17 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php8A47.tmp to uploads/interviews/consolidated/interview_complete_2_1756943477095.webm
+[04-Sep-2025 01:51:17 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:51:17 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:51:17 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:51:18 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:51:18 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:51:18 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:51:18 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943478256.webm","full_path":"interview_complete_2_1756943478256.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php8EDC.tmp","error":0,"size":722925}}
+[04-Sep-2025 01:51:18 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:51:18 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:51:18 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:51:18 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php8EDC.tmp to uploads/interviews/consolidated/interview_complete_2_1756943478256.webm
+[04-Sep-2025 01:51:18 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:51:18 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:51:18 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:51:27 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:51:27 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:51:27 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:51:27 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943487308.webm","full_path":"interview_complete_2_1756943487308.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\phpB234.tmp","error":0,"size":733148}}
+[04-Sep-2025 01:51:27 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:51:27 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:51:27 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:51:27 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\phpB234.tmp to uploads/interviews/consolidated/interview_complete_2_1756943487308.webm
+[04-Sep-2025 01:51:27 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:51:27 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:51:27 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:52:09 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:52:09 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:52:09 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:52:09 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943528184.webm","full_path":"interview_complete_2_1756943528184.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php560B.tmp","error":0,"size":121712}}
+[04-Sep-2025 01:52:09 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:52:09 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943527656.webm","full_path":"interview_complete_2_1756943527656.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php556C.tmp","error":0,"size":68431}}
+[04-Sep-2025 01:52:09 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:52:09 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:52:09 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:52:09 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943528040.webm","full_path":"interview_complete_2_1756943528040.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php557D.tmp","error":0,"size":102684}}
+[04-Sep-2025 01:52:09 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:52:09 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:52:09 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:52:09 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:52:09 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:52:09 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:52:09 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php557D.tmp to uploads/interviews/consolidated/interview_complete_2_1756943528040.webm
+[04-Sep-2025 01:52:09 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:52:09 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:52:09 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:52:09 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php556C.tmp to uploads/interviews/consolidated/interview_complete_2_1756943527656.webm
+[04-Sep-2025 01:52:09 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:52:09 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:52:09 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:52:09 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php560B.tmp to uploads/interviews/consolidated/interview_complete_2_1756943528184.webm
+[04-Sep-2025 01:52:09 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:52:09 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:52:09 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:52:09 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:52:09 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943527646.webm","full_path":"interview_complete_2_1756943527646.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php554B.tmp","error":0,"size":360226}}
+[04-Sep-2025 01:52:09 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:52:09 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:52:09 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943527653.webm","full_path":"interview_complete_2_1756943527653.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php555C.tmp","error":0,"size":212413}}
+[04-Sep-2025 01:52:09 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:52:09 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:52:09 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:52:09 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:52:09 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:52:09 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php555C.tmp to uploads/interviews/consolidated/interview_complete_2_1756943527653.webm
+[04-Sep-2025 01:52:09 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:52:09 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:52:09 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:52:09 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php554B.tmp to uploads/interviews/consolidated/interview_complete_2_1756943527646.webm
+[04-Sep-2025 01:52:09 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:52:09 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:52:09 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:52:10 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:52:10 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:52:10 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:52:10 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943528639.webm","full_path":"interview_complete_2_1756943528639.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php561B.tmp","error":0,"size":96471}}
+[04-Sep-2025 01:52:10 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:52:10 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:52:10 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:52:10 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php561B.tmp to uploads/interviews/consolidated/interview_complete_2_1756943528639.webm
+[04-Sep-2025 01:52:10 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:52:10 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:52:10 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:52:11 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:52:11 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:52:11 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"3.71"}
+[04-Sep-2025 01:52:11 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943531693.webm","full_path":"interview_complete_2_1756943531693.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php5FA2.tmp","error":0,"size":176031}}
+[04-Sep-2025 01:52:11 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:52:11 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:52:11 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:52:11 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php5FA2.tmp to uploads/interviews/consolidated/interview_complete_2_1756943531693.webm
+[04-Sep-2025 01:52:11 Europe/Berlin] Error in save consolidated video: Unknown column 'ID' in 'field list'
+[04-Sep-2025 01:52:11 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\eris\save-consolidated-video.php(118): mysqli_query(Object(mysqli), 'SELECT ID FROM ...')
+#1 {main}
+[04-Sep-2025 01:52:11 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:55:29 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:55:29 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:55:29 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"1.826"}
+[04-Sep-2025 01:55:29 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943729040.webm","full_path":"interview_complete_2_1756943729040.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php6294.tmp","error":0,"size":722134}}
+[04-Sep-2025 01:55:29 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:55:29 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:55:29 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:55:29 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php6294.tmp to uploads/interviews/consolidated/interview_complete_2_1756943729040.webm
+[04-Sep-2025 01:55:29 Europe/Berlin] Creating new consolidated video record
+[04-Sep-2025 01:55:29 Europe/Berlin] Database SQL: INSERT INTO tblinterviewvideos (REGISTRATIONID, VIDEO_PATH, CREATED_AT) 
+                VALUES ('2', 'interview_complete_2_1756943729040.webm', NOW())
+[04-Sep-2025 01:55:29 Europe/Berlin] Consolidated video upload completed successfully
+[04-Sep-2025 01:55:29 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:55:37 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:55:37 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:55:37 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"1.826"}
+[04-Sep-2025 01:55:37 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943737954.webm","full_path":"interview_complete_2_1756943737954.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php855F.tmp","error":0,"size":733930}}
+[04-Sep-2025 01:55:38 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:55:38 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:55:38 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:55:38 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php855F.tmp to uploads/interviews/consolidated/interview_complete_2_1756943737954.webm
+[04-Sep-2025 01:55:38 Europe/Berlin] Updating existing consolidated video record
+[04-Sep-2025 01:55:38 Europe/Berlin] Database SQL: UPDATE tblinterviewvideos 
+                SET VIDEO_PATH = 'interview_complete_2_1756943737954.webm', CREATED_AT = NOW()
+                WHERE REGISTRATIONID = '2'
+[04-Sep-2025 01:55:38 Europe/Berlin] Consolidated video upload completed successfully
+[04-Sep-2025 01:55:38 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:57:44 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:57:44 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:57:44 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"1.826"}
+[04-Sep-2025 01:57:44 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943864400.webm","full_path":"interview_complete_2_1756943864400.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php7346.tmp","error":0,"size":718587}}
+[04-Sep-2025 01:57:44 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:57:44 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:57:44 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:57:44 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php7346.tmp to uploads/interviews/consolidated/interview_complete_2_1756943864400.webm
+[04-Sep-2025 01:57:44 Europe/Berlin] Updating existing consolidated video record
+[04-Sep-2025 01:57:44 Europe/Berlin] Database SQL: UPDATE tblinterviewvideos 
+                SET VIDEO_PATH = 'interview_complete_2_1756943864400.webm', CREATED_AT = NOW()
+                WHERE REGISTRATIONID = '2'
+[04-Sep-2025 01:57:44 Europe/Berlin] Consolidated video upload completed successfully
+[04-Sep-2025 01:57:44 Europe/Berlin] === Save Consolidated Video Ended ===
+[04-Sep-2025 01:57:46 Europe/Berlin] === Save Consolidated Video Started ===
+[04-Sep-2025 01:57:46 Europe/Berlin] Request Method: POST
+[04-Sep-2025 01:57:46 Europe/Berlin] POST Data: {"videoType":"consolidated","token":"822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7","registrationId":"2","duration":"1.826"}
+[04-Sep-2025 01:57:46 Europe/Berlin] FILES Data: {"video":{"name":"interview_complete_2_1756943866825.webm","full_path":"interview_complete_2_1756943866825.webm","type":"video\/webm","tmp_name":"C:\\xampp\\tmp\\php7CBD.tmp","error":0,"size":732321}}
+[04-Sep-2025 01:57:46 Europe/Berlin] Database connection successful
+[04-Sep-2025 01:57:46 Europe/Berlin] Token received: 822be630d1f9d890c597fc9dd8e60a0c9ae3555a07780c74730ab4571d7dfdf7
+[04-Sep-2025 01:57:46 Europe/Berlin] Token validated successfully
+[04-Sep-2025 01:57:46 Europe/Berlin] Moving consolidated video from C:\xampp\tmp\php7CBD.tmp to uploads/interviews/consolidated/interview_complete_2_1756943866825.webm
+[04-Sep-2025 01:57:46 Europe/Berlin] Updating existing consolidated video record
+[04-Sep-2025 01:57:46 Europe/Berlin] Database SQL: UPDATE tblinterviewvideos 
+                SET VIDEO_PATH = 'interview_complete_2_1756943866825.webm', CREATED_AT = NOW()
+                WHERE REGISTRATIONID = '2'
+[04-Sep-2025 01:57:46 Europe/Berlin] Consolidated video upload completed successfully
+[04-Sep-2025 01:57:46 Europe/Berlin] === Save Consolidated Video Ended ===

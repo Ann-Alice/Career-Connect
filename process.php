@@ -17,69 +17,58 @@ switch ($action) {
 
 function doSubmitApplication() { 
 	global $mydb;   
-		$jobid  = $_GET['JOBID'];
-		
+	$jobid = $_GET['JOBID'];
+	
+	$autonum = New Autonumber();
+	$applicantid = $autonum->set_autonumber('APPLICANT');
+	$autonum = New Autonumber();
+	$fileid = $autonum->set_autonumber('FILEID');
 
-		$autonum = New Autonumber();
-		$applicantid = $autonum->set_autonumber('APPLICANT');
-		$autonum = New Autonumber();
-		$fileid = $autonum->set_autonumber('FILEID');
+	@$picture = UploadImage();
+	@$location = "photos/". $picture;
 
-		@$picture = UploadImage();
-		@$location = "photos/". $picture ;
+	if ($picture=="") {
+		redirect(web_root."index.php?q=apply&job=".$jobid."&view=personalinfo");
+	} else { 
+		if (isset($_SESSION['APPLICANTID'])) {
+			$sql = "INSERT INTO `tblattachmentfile` (FILEID,`USERATTACHMENTID`, `FILE_NAME`, `FILE_LOCATION`, `JOBID`) 
+					VALUES ('". date('Y').$fileid->AUTO."','{$_SESSION['APPLICANTID']}','Resume','{$location}','{$jobid}')";
+			$mydb->setQuery($sql); 
+			$res = $mydb->executeQuery(); 
 
+			doUpdate($jobid, $fileid->AUTO);
+		} else {
+			$sql = "INSERT INTO `tblattachmentfile` (FILEID,`USERATTACHMENTID`, `FILE_NAME`, `FILE_LOCATION`, `JOBID`) 
+					VALUES ('". date('Y').$fileid->AUTO."','". date('Y').$applicantid->AUTO."','Resume','{$location}','{$jobid}')";
+			$mydb->setQuery($sql); 
+			$res = $mydb->executeQuery(); 
 
-		if ($picture=="") {
-			# code...
-			redirect(web_root."index.php?q=apply&job=".$jobid."&view=personalinfo");
-		}else{ 
-			
-			if (isset($_SESSION['APPLICANTID'])) {
+			doInsert($jobid, $fileid->AUTO);
 
-				$sql = "INSERT INTO `tblattachmentfile` (FILEID,`USERATTACHMENTID`, `FILE_NAME`, `FILE_LOCATION`, `JOBID`) 
-				VALUES ('". date('Y').$fileid->AUTO."','{$_SESSION['APPLICANTID']}','Resume','{$location}','{$jobid}')";
-				$mydb->setQuery($sql); 
-				$res = $mydb->executeQuery(); 
-
-				doUpdate($jobid,$fileid->AUTO);
-				
-			}else{
-				 
-				$sql = "INSERT INTO `tblattachmentfile` (FILEID,`USERATTACHMENTID`, `FILE_NAME`, `FILE_LOCATION`, `JOBID`) 
-				VALUES ('". date('Y').$fileid->AUTO."','". date('Y').$applicantid->AUTO."','Resume','{$location}','{$jobid}')";
-				// echo $sql;exit;
-				$mydb->setQuery($sql); 
-				$res = $mydb->executeQuery(); 
-
-				doInsert($jobid,$fileid->AUTO); 
-
-				$autonum = New Autonumber();
-				$autonum->auto_update('APPLICANT');
-			}
+			$autonum = New Autonumber();
+			$autonum->auto_update('APPLICANT');
 		}
+	}
 
-		$autonum = New Autonumber();
-	    $autonum->auto_update('FILEID'); 
-	 
+	$autonum = New Autonumber();
+	$autonum->auto_update('FILEID'); 
 }
-function doInsert($jobid=0,$fileid=0) {
+
+function doInsert($jobid=0, $fileid=0) {
 	if (isset($_POST['submit'])) {  
-	global $mydb; 
+		global $mydb; 
 
-			$birthdate =  $_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
+		$birthdate = $_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
+		$age = date_diff(date_create($birthdate), date_create('today'))->y;
 
-			$age = date_diff(date_create($birthdate),date_create('today'))->y;
-
-			if ($age < 20){
+		if ($age < 20) {
 			message("Invalid age. 20 years old and above is allowed.", "error");
 			redirect("index.php?q=apply&view=personalinfo&job=".$jobid);
-
-			}else{
-
+		} else {
 			$autonum = New Autonumber();
 			$auto = $autonum->set_autonumber('APPLICANT');
 			 
-			$applicant =New Applicants();
+			$applicant = New Applicants();
 			$applicant->APPLICANTID = date('Y').$auto->AUTO;
 			$applicant->FNAME = $_POST['FNAME'];
 			$applicant->LNAME = $_POST['LNAME'];
@@ -97,62 +86,54 @@ function doInsert($jobid=0,$fileid=0) {
 			$applicant->DEGREE = $_POST['DEGREE'];
 			$applicant->create();
 
-
-			$sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND JOBID = '{$jobid}'" ;
+			$sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND JOBID = '{$jobid}'";
 			$mydb->setQuery($sql);
 			$result = $mydb->loadSingleResult();
 
-
 			$jobreg = New JobRegistration(); 
 			$jobreg->COMPANYID = $result->COMPANYID;
-			$jobreg->JOBID     = $result->JOBID;
+			$jobreg->JOBID = $result->JOBID;
 			$jobreg->APPLICANTID = date('Y').$auto->AUTO;
-			$jobreg->APPLICANT   = $_POST['FNAME'] . ' ' . $_POST['LNAME'];
-			$jobreg->REGISTRATIONDATE = date('Y-m-d');
-			$jobreg->FILEID = date('Y').$fileid;
-			$jobreg->REMARKS = 'Pending';
-			$jobreg->DATETIMEAPPROVED = date('Y-m-d H:i');
-			$jobreg->create();
-  
-
-			message("Your application already submitted. Please wait for the company confirmation if your are qualified to this job.","success");
-			redirect("index.php?q=success&job=".$result->JOBID);
-
-			
-	 }
-}
-}
-function doUpdate($jobid=0,$fileid=0) {
-	if (isset($_POST['submit'])) {
-	global $mydb;   
-
-			$applicant =New Applicants();
-			$appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
-
-			 
-
-			$sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND JOBID = '{$jobid}'" ;
-			$mydb->setQuery($sql);
-			$result = $mydb->loadSingleResult();
-
-
-			$jobreg = New JobRegistration(); 
-			$jobreg->COMPANYID = $result->COMPANYID;
-			$jobreg->JOBID     = $result->JOBID;
-			$jobreg->APPLICANTID = $appl->APPLICANTID;
-			$jobreg->APPLICANT   = $appl->FNAME . ' ' . $appl->LNAME;
+			$jobreg->APPLICANT = $_POST['FNAME'] . ' ' . $_POST['LNAME'];
 			$jobreg->REGISTRATIONDATE = date('Y-m-d');
 			$jobreg->FILEID = date('Y').$fileid;
 			$jobreg->REMARKS = 'Pending';
 			$jobreg->DATETIMEAPPROVED = date('Y-m-d H:i');
 			$jobreg->create();
 
-  
-			message("Your application already submitted. Please wait for the company confirmation if your are qualified to this job.","success");
+			message("Your application has been submitted. Please wait for the company confirmation if you are qualified for this job.", "success");
 			redirect("index.php?q=success&job=".$result->JOBID);
- 
+		}
 	}
 }
+
+function doUpdate($jobid=0, $fileid=0) {
+	if (isset($_POST['submit'])) {
+		global $mydb;   
+
+		$applicant = New Applicants();
+		$appl = $applicant->single_applicant($_SESSION['APPLICANTID']);
+
+		$sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND JOBID = '{$jobid}'";
+		$mydb->setQuery($sql);
+		$result = $mydb->loadSingleResult();
+
+		$jobreg = New JobRegistration(); 
+		$jobreg->COMPANYID = $result->COMPANYID;
+		$jobreg->JOBID = $result->JOBID;
+		$jobreg->APPLICANTID = $appl->APPLICANTID;
+		$jobreg->APPLICANT = $appl->FNAME . ' ' . $appl->LNAME;
+		$jobreg->REGISTRATIONDATE = date('Y-m-d');
+		$jobreg->FILEID = date('Y').$fileid;
+		$jobreg->REMARKS = 'Pending';
+		$jobreg->DATETIMEAPPROVED = date('Y-m-d H:i');
+		$jobreg->create();
+
+		message("Your application has been submitted. Please wait for the company confirmation if you are qualified for this job.", "success");
+		redirect("index.php?q=success&job=".$result->JOBID);
+	}
+}
+
 function doRegister(){
 	global $mydb;
 	if (isset($_POST['btnRegister'])) { 
@@ -179,12 +160,14 @@ function doRegister(){
 			$applicant->CIVILSTATUS = $_POST['CIVILSTATUS'];
 			$applicant->BIRTHDATE = $birthdate;
 			$applicant->BIRTHPLACE = $_POST['BIRTHPLACE'];
-			$applicant->AGE = $age;
+			$applicant->AGE = $age; // Set the calculated age
 			$applicant->USERNAME = $_POST['USERNAME'];
 			$applicant->PASS = sha1($_POST['PASS']);
 			$applicant->EMAILADDRESS = $_POST['EMAILADDRESS'];
 			$applicant->CONTACTNO = $_POST['TELNO'];
 			$applicant->DEGREE = $_POST['DEGREE'];
+			$applicant->APPLICANTPHOTO = ''; // Set empty string for photo field
+			$applicant->NATIONALID = ''; // Set empty string for national ID field
 			$applicant->create();
 
 
@@ -212,16 +195,20 @@ function doLogin(){
     //make use of the static function, and we passed to parameters
     $res = $applicant->applicantAuthentication($email, $h_upass);
     if ($res==true) { 
-
-       	message("You are now successfully login!","success");
-       
-       // $sql="INSERT INTO `tbllogs` (`USERID`,USERNAME, `LOGDATETIME`, `LOGROLE`, `LOGMODE`) 
-       //    VALUES (".$_SESSION['USERID'].",'".$_SESSION['FULLNAME']."','".date('Y-m-d H:i:s')."','".$_SESSION['UROLE']."','Logged in')";
-       //    mysql_query($sql) or die(mysql_error()); 
+       if(isset($_POST['ajax'])) {
+         echo "success";
+         exit;
+       } else {
+         message("You are now successfully login!","success");
          redirect(web_root."applicant/");
-     
-    }else{
-    	 echo "Account does not exist! Please contact Administrator."; 
+       }
+    } else {
+       if(isset($_POST['ajax'])) {
+         echo "Account does not exist! Please contact Administrator.";
+         exit;
+       } else {
+         echo "Account does not exist! Please contact Administrator.";
+       }
     } 
 }
  

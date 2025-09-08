@@ -87,8 +87,10 @@ switch ($action) {
 					$emp->AGE			    = $age;
 					$emp->SEX 				= $_POST['optionsRadios']; 
 					$emp->TELNO				= $_POST['TELNO'];
+					$emp->CELLNO			= ''; // Add default empty value for CELLNO
 					$emp->CIVILSTATUS		= $_POST['CIVILSTATUS']; 
 					$emp->POSITION			= trim($_POST['POSITION']);
+					$emp->WORKSTATS			= isset($_POST['WORKSTATS']) && $_POST['WORKSTATS'] != 'none' ? $_POST['WORKSTATS'] : 'Active';
 					// $emp->DEPARTMENTID		= $_POST['DEPARTMENTID'];
 					// $emp->DIVISIONID		= $_POST['DIVISIONID'];
 					$emp->EMP_EMAILADDRESS	= $_POST['EMP_EMAILADDRESS'];
@@ -156,8 +158,10 @@ switch ($action) {
 					$emp->AGE			    = $age;
 					$emp->SEX 				= $_POST['optionsRadios']; 
 					$emp->TELNO				= $_POST['TELNO'];
+					$emp->CELLNO			= ''; // Add default empty value for CELLNO
 					$emp->CIVILSTATUS		= $_POST['CIVILSTATUS']; 
 					$emp->POSITION			= trim($_POST['POSITION']);
+					$emp->WORKSTATS			= isset($_POST['WORKSTATS']) && $_POST['WORKSTATS'] != 'none' ? $_POST['WORKSTATS'] : 'Active';
 					// $emp->DEPARTMENTID		= $_POST['DEPARTMENTID'];
 					// $emp->DIVISIONID		= $_POST['DIVISIONID'];
 					$emp->EMP_EMAILADDRESS		= $_POST['EMP_EMAILADDRESS'];
@@ -173,6 +177,8 @@ switch ($action) {
 
 					if (isset($u_res)) {
 						# code...
+						// Fix: Properly instantiate the user object with database data
+						$user = User::instantiate($u_res);
 						$user->FULLNAME 		= $_POST['FNAME'] . ' ' .$_POST['LNAME'];
 						$user->USERNAME			= $_POST['LNAME'];
 						$user->PASS				= sha1($_POST['EMPLOYEEID']); 
@@ -294,3 +300,4 @@ switch ($action) {
 
  
 ?>
+</```

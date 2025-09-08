@@ -96,4 +96,26 @@ function currentpage(){
 		<?php
 	}
 		
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+function formatDate($date) {
+    return date('F d, Y', strtotime($date));
+}
+
+function formatDateTime($datetime) {
+    return date('F d, Y h:i A', strtotime($datetime));
+}
+
+function sanitize($string) {
+    global $mydb;
+    	return $mydb->escape_string($string);
+}
 ?>

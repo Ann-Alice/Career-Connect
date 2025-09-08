@@ -109,7 +109,7 @@ class Employee {
 	  // sanitize the values before submitting
 	  // Note: does not alter the actual value of each attribute
 	  foreach($this->attributes() as $key => $value){
-	    $clean_attributes[$key] = $mydb->escape_value($value);
+	    $clean_attributes[$key] = $mydb->escape_string($value);
 	  }
 	  return $clean_attributes;
 	}

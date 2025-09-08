@@ -102,7 +102,7 @@ class Applicants {
 	  // sanitize the values before submitting
 	  // Note: does not alter the actual value of each attribute
 	  foreach($this->attributes() as $key => $value){
-	    $clean_attributes[$key] = $mydb->escape_value($value);
+	    $clean_attributes[$key] = $mydb->escape_string($value);
 	  }
 	  return $clean_attributes;
 	}
@@ -126,7 +126,12 @@ class Applicants {
 		$sql .= ") VALUES ('";
 		$sql .= join("', '", array_values($attributes));
 		$sql .= "')";
-	echo $mydb->setQuery($sql);
+		
+		// Debug: Log the SQL query
+		error_log("Creating applicant with SQL: " . $sql);
+		error_log("Attributes: " . print_r($attributes, true));
+		
+		$mydb->setQuery($sql);
 	
 	 if($mydb->executeQuery()) {
 	    $this->id = $mydb->insert_id();

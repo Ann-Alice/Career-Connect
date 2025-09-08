@@ -37,7 +37,8 @@ switch ($action) {
 			$company->COMPANYNAME		= $_POST['COMPANYNAME'];
 			$company->COMPANYADDRESS	= $_POST['COMPANYADDRESS'];
 			$company->COMPANYCONTACTNO	= $_POST['COMPANYCONTACTNO'];
-			// $company->COMPANYMISSION	= $_POST['COMPANYMISSION'];
+			$company->COMPANYSTATUS		= isset($_POST['COMPANYSTATUS']) ? $_POST['COMPANYSTATUS'] : 'Active'; // Provide default status
+			$company->COMPANYMISSION	= isset($_POST['COMPANYMISSION']) ? $_POST['COMPANYMISSION'] : ''; // Provide default mission
 			$company->create();
 
 			message("New company created successfully!", "success");
@@ -55,7 +56,8 @@ switch ($action) {
 			$company->COMPANYNAME		= $_POST['COMPANYNAME'];
 			$company->COMPANYADDRESS	= $_POST['COMPANYADDRESS'];
 			$company->COMPANYCONTACTNO	= $_POST['COMPANYCONTACTNO'];
-			// $company->COMPANYMISSION	= $_POST['COMPANYMISSION'];
+			$company->COMPANYSTATUS		= isset($_POST['COMPANYSTATUS']) ? $_POST['COMPANYSTATUS'] : 'Active'; // Handle status in edit
+			$company->COMPANYMISSION	= isset($_POST['COMPANYMISSION']) ? $_POST['COMPANYMISSION'] : ''; // Handle mission in edit
 			$company->update($_POST['COMPANYID']);
 
 			message("Company has been updated!", "success");

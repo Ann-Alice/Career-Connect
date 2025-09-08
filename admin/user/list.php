@@ -28,29 +28,50 @@
 											FROM  `tblusers`");
 				  		$cur = $mydb->loadResultList();
 
-						foreach ($cur as $result) {
-				  		echo '<tr>';
-				  		// echo '<td width="5%" align="center"></td>';
-				  		echo '<td>' . $result->USERID.'</a></td>';
-				  		echo '<td>' . $result->FULLNAME.'</a></td>';
-				  		echo '<td>'. $result->USERNAME.'</td>';
-				  		echo '<td>'. $result->ROLE.'</td>';
-				  		If($result->USERID==$_SESSION['ADMIN_USERID'] || $result->ROLE=='MainAdministrator' || $result->ROLE=='Administrator') {
-				  			$active = "Disabled";
-
-				  		}else{
-				  			$active = "";
-
-				  		}
-
-				  		echo '<td align="center" > <a title="Edit" href="index.php?view=edit&id='.$result->USERID.'"  class="btn btn-primary btn-xs  ">  <span class="fa fa-edit fw-fa"></span></a>
-				  					 <a title="Delete" href="controller.php?action=delete&id='.$result->USERID.'" class="btn btn-danger btn-xs" '.$active.'><span class="fa fa-trash-o fw-fa"></span> </a>
-				  					 </td>';
-				  		echo '</tr>';
-				  	} 
+						if ($cur) {
+							foreach ($cur as $result) {
+								echo '<tr>';
+								echo '<td>' . htmlspecialchars($result->USERID) . '</td>';
+								echo '<td>' . htmlspecialchars($result->FULLNAME) . '</td>';
+								echo '<td>' . htmlspecialchars($result->USERNAME) . '</td>';
+								echo '<td>' . htmlspecialchars($result->ROLE) . '</td>';
+								$isProtected = ($result->USERID == $_SESSION['ADMIN_USERID'] || $result->ROLE == 'MainAdministrator' || $result->ROLE == 'Administrator');
+								$deleteBtn = $isProtected
+									? '<a title="Delete (disabled for protected users)" class="btn btn-danger btn-xs disabled" style="pointer-events:none;opacity:0.6;" data-toggle="tooltip" data-placement="top" title="You cannot delete this user."><span class="fa fa-trash-o fw-fa"></span></a>'
+									: '<a title="Delete" href="controller.php?action=delete&id=' . htmlspecialchars($result->USERID) . '" class="btn btn-danger btn-xs" onclick="return confirm(\'Are you sure you want to delete this user?\')"><span class="fa fa-trash-o fw-fa"></span></a>';
+								echo '<td align="center" > <a title="Edit" href="index.php?view=edit&id=' . htmlspecialchars($result->USERID) . '"  class="btn btn-primary btn-xs  ">  <span class="fa fa-edit fw-fa"></span></a>
+									' . $deleteBtn . '</td>';
+								echo '</tr>';
+							}
+						} else {
+							echo '<tr><td colspan="5" class="text-center">No users found</td></tr>';
+						}
 				  	?>
 				  </tbody>
 					
 				</table>  
 			</div> 
+<script>
+$(document).ready(function() {
+    $('#dash-table').DataTable({
+        responsive: true,
+        "order": [[0, "asc"]],
+        "pageLength": 10,
+        "language": {
+            "search": "Search:",
+            "lengthMenu": "Show _MENU_ entries per page",
+            "info": "Showing _START_ to _END_ of _TOTAL_ entries"
+        }
+    });
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<style>
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+.btn {
+    margin-right: 5px;
+}
+</style>
  

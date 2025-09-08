@@ -1,508 +1,403 @@
+<?php
+// Create database connection directly using mysqli
+if (!isset($mydb) || !$mydb) {
+    $host = 'localhost';
+    $username = 'root';
+    $password = '';
+    $database = 'erisdb';
+    $port = 4306;
+    
+    $conn = mysqli_connect($host, $username, $password, $database, $port);
+    
+    if (!$conn) {
+        echo "<div class='alert alert-danger'>Database connection failed: " . mysqli_connect_error() . "</div>";
+        return;
+    }
+    
+    $mydb = new stdClass();
+    $mydb->conn = $conn;
+}
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
+// Get statistics
+$stats_sql = "SELECT 
+    COUNT(*) as total_candidates,
+    COUNT(CASE WHEN INTERVIEW_STATUS = 'Completed' THEN 1 END) as completed_interviews,
+    COUNT(CASE WHEN ADMIN_GRADE IS NOT NULL THEN 1 END) as graded_interviews,
+    AVG(CASE WHEN JSON_EXTRACT(INTERVIEW_RESULTS, '$.overall_score') IS NOT NULL 
+        THEN CAST(JSON_EXTRACT(INTERVIEW_RESULTS, '$.overall_score') AS DECIMAL(5,2)) END) as avg_ai_score
+FROM tbljobregistration 
+WHERE INTERVIEW_STATUS IS NOT NULL";
+
+$stats_result = mysqli_query($mydb->conn, $stats_sql);
+$stats = mysqli_fetch_assoc($stats_result);
+
+// Get recent interviews
+$recent_sql = "SELECT r.*, a.FNAME, a.LNAME, j.OCCUPATIONTITLE, c.COMPANYNAME,
+                       JSON_EXTRACT(r.INTERVIEW_RESULTS, '$.overall_score') as ai_score
+                FROM tbljobregistration r 
+                JOIN tblapplicants a ON r.APPLICANTID = a.APPLICANTID 
+                JOIN tbljob j ON r.JOBID = j.JOBID 
+                JOIN tblcompany c ON j.COMPANYID = c.COMPANYID
+                WHERE r.INTERVIEW_STATUS = 'Completed' 
+                ORDER BY r.INTERVIEW_COMPLETED_AT DESC 
+                LIMIT 6";
+
+$recent_result = mysqli_query($mydb->conn, $recent_sql);
+?>
+
+<!-- Enhanced Content Header -->
+<section class="content-header" style="background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); padding: 20px; border-radius: 0; margin-bottom: 0; box-shadow: none; position: relative;">
+  <div class="row">
+    <div class="col-md-8">
+      <h1 style="font-size: 24px; color: white; margin: 0; display: flex; align-items: center;">
+        <i class="fa fa-tachometer" style="margin-right: 10px;"></i> Dashboard
+        <small style="display: block; margin-left: 15px; color: rgba(255,255,255,0.8); font-size: 14px;">
+          Control panel
+        </small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
+    </div>
+    <div class="col-md-4 text-right">
+      <nav style="color: rgba(255,255,255,0.8); font-size: 14px;">
+        <i class="fa fa-home"></i> Home > Dashboard
+      </nav>
+    </div>
+  </div>
+</section>
 
-    <!-- Main content -->
-    <section class="content">
-      <!-- Small boxes (Stat box) -->
-      <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>150</h3>
-
-              <p>New Orders</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+<!-- Main content -->
+<section class="content">
+  
+  <!-- Statistics Dashboard -->
+  <div class="row" style="margin-bottom: 25px;">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="padding: 10px;">
+      <div class="info-box" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); border-radius: 15px; box-shadow: 0 8px 25px rgba(108,92,231,0.3); transition: all 0.3s ease; padding: 25px; text-align: center; position: relative;">
+        <div style="position: absolute; top: 15px; right: 15px; color: rgba(255,255,255,0.3); font-size: 40px;">
+          <i class="fa fa-users"></i>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3> 
-              <p>Bounce Rate</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+        <div style="color: white; font-size: 36px; font-weight: 700; margin-bottom: 5px;"><?php echo $stats['total_candidates'] ?? 9; ?></div>
+        <div style="color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 600;">Total Candidates</div>
+        <div style="margin-top: 15px;">
+          <a href="#" style="color: rgba(255,255,255,0.8); font-size: 12px; text-decoration: none;">View All <i class="fa fa-arrow-circle-right"></i></a>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>User Registrations</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>65</h3> 
-              <p>Unique Visitors</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
       </div>
-      <!-- /.row -->
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
-          <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-              <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-              <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-            </ul>
-            <div class="tab-content no-padding">
-              <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-            </div>
-          </div>
-          <!-- /.nav-tabs-custom -->
-
-          <!-- Chat box -->
-          <div class="box box-success">
-            <div class="box-header">
-              <i class="fa fa-comments-o"></i>
-
-              <h3 class="box-title">Chat</h3>
-
-              <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                <div class="btn-group" data-toggle="btn-toggle">
-                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="box-body chat" id="chat-box">
-              <!-- chat item -->
-              <div class="item">
-                <img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                    Mike Doe
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-                <div class="attachment">
-                  <h4>Attachments:</h4>
-
-                  <p class="filename">
-                    Theme-thumbnail-image.jpg
-                  </p>
-
-                  <div class="pull-right">
-                    <button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
-                  </div>
-                </div>
-                <!-- /.attachment -->
-              </div>
-              <!-- /.item -->
-              <!-- chat item -->
-              <div class="item">
-                <img src="dist/img/user3-128x128.jpg" alt="user image" class="offline">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                    Alexander Pierce
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-              </div>
-              <!-- /.item -->
-              <!-- chat item -->
-              <div class="item">
-                <img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-                    Susan Doe
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-              </div>
-              <!-- /.item -->
-            </div>
-            <!-- /.chat -->
-            <div class="box-footer">
-              <div class="input-group">
-                <input class="form-control" placeholder="Type message...">
-
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.box (chat box) -->
-
-          <!-- TO DO List -->
-          <div class="box box-primary">
-            <div class="box-header">
-              <i class="ion ion-clipboard"></i>
-
-              <h3 class="box-title">To Do List</h3>
-
-              <div class="box-tools pull-right">
-                <ul class="pagination pagination-sm inline">
-                  <li><a href="#">&laquo;</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">&raquo;</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <ul class="todo-list">
-                <li>
-                  <!-- drag handle -->
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <!-- checkbox -->
-                  <input type="checkbox" value="" name="">
-                  <!-- todo text -->
-                  <span class="text">Design a nice theme</span>
-                  <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                  <!-- General tools such as edit or delete-->
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Make the theme responsive</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Check your messages and notifications</span>
-                  <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix no-border">
-              <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-            </div>
-          </div>
-          <!-- /.box -->
-
-          <!-- quick email widget -->
-          <div class="box box-info">
-            <div class="box-header">
-              <i class="fa fa-envelope"></i>
-
-              <h3 class="box-title">Quick Email</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
-                  <i class="fa fa-times"></i></button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <div class="box-body">
-              <form action="#" method="post">
-                <div class="form-group">
-                  <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject">
-                </div>
-                <div>
-                  <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="box-footer clearfix">
-              <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                <i class="fa fa-arrow-circle-right"></i></button>
-            </div>
-          </div>
-
-        </section>
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-5 connectedSortable">
-
-          <!-- Map box -->
-          <div class="box box-solid bg-light-blue-gradient">
-            <div class="box-header">
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range">
-                  <i class="fa fa-calendar"></i></button>
-                <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
-                  <i class="fa fa-minus"></i></button>
-              </div>
-              <!-- /. tools -->
-
-              <i class="fa fa-map-marker"></i>
-
-              <h3 class="box-title">
-                Visitors
-              </h3>
-            </div>
-            <div class="box-body">
-              <div id="world-map" style="height: 250px; width: 100%;"></div>
-            </div>
-            <!-- /.box-body-->
-            <div class="box-footer no-border">
-              <div class="row">
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <div id="sparkline-1"></div>
-                  <div class="knob-label">Visitors</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <div id="sparkline-2"></div>
-                  <div class="knob-label">Online</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center">
-                  <div id="sparkline-3"></div>
-                  <div class="knob-label">Exists</div>
-                </div>
-                <!-- ./col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.box -->
-
-          <!-- solid sales graph -->
-          <div class="box box-solid bg-teal-gradient">
-            <div class="box-header">
-              <i class="fa fa-th"></i>
-
-              <h3 class="box-title">Sales Graph</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="box-body border-radius-none">
-              <div class="chart" id="line-chart" style="height: 250px;"></div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer no-border">
-              <div class="row">
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                  <div class="knob-label">Mail-Orders</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                  <div class="knob-label">Online</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                  <div class="knob-label">In-Store</div>
-                </div>
-                <!-- ./col -->
-              </div>
-              <!-- /.row -->
-            </div>
-            <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
-
-          <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
-
-              <h3 class="box-title">Calendar</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bars"></i></button>
-                  <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#">Add new event</a></li>
-                    <li><a href="#">Clear events</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View calendar</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 100%"></div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- Progress bars -->
-                  <div class="clearfix">
-                    <span class="pull-left">Task #1</span>
-                    <small class="pull-right">90%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #2</span>
-                    <small class="pull-right">70%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-6">
-                  <div class="clearfix">
-                    <span class="pull-left">Task #3</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #4</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.box -->
-
-        </section>
-        <!-- right col -->
+    </div>
+    
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="padding: 10px;">
+      <div class="info-box" style="background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,184,148,0.3); transition: all 0.3s ease; padding: 25px; text-align: center; position: relative;">
+        <div style="position: absolute; top: 15px; right: 15px; color: rgba(255,255,255,0.3); font-size: 40px;">
+          <i class="fa fa-check-circle"></i>
+        </div>
+        <div style="color: white; font-size: 36px; font-weight: 700; margin-bottom: 5px;"><?php echo $stats['completed_interviews'] ?? 0; ?></div>
+        <div style="color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 600;">Completed Interviews</div>
+        <div style="margin-top: 15px;">
+          <a href="#" style="color: rgba(255,255,255,0.8); font-size: 12px; text-decoration: none;">View Results <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
       </div>
-      <!-- /.row (main row) -->
+    </div>
+    
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="padding: 10px;">
+      <div class="info-box" style="background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%); border-radius: 15px; box-shadow: 0 8px 25px rgba(253,121,168,0.3); transition: all 0.3s ease; padding: 25px; text-align: center; position: relative;">
+        <div style="position: absolute; top: 15px; right: 15px; color: rgba(255,255,255,0.3); font-size: 40px;">
+          <i class="fa fa-clock-o"></i>
+        </div>
+        <div style="color: white; font-size: 36px; font-weight: 700; margin-bottom: 5px;"><?php echo $stats['graded_interviews'] ?? 0; ?></div>
+        <div style="color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 600;">In Progress</div>
+        <div style="margin-top: 15px;">
+          <a href="#" style="color: rgba(255,255,255,0.8); font-size: 12px; text-decoration: none;">Monitor <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="padding: 10px;">
+      <div class="info-box" style="background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%); border-radius: 15px; box-shadow: 0 8px 25px rgba(250,177,160,0.3); transition: all 0.3s ease; padding: 25px; text-align: center; position: relative;">
+        <div style="position: absolute; top: 15px; right: 15px; color: rgba(255,255,255,0.3); font-size: 40px;">
+          <i class="fa fa-percent"></i>
+        </div>
+        <div style="color: white; font-size: 36px; font-weight: 700; margin-bottom: 5px;">
+          <?php echo $stats['avg_ai_score'] ? round($stats['avg_ai_score'], 0) . '%' : '0%'; ?>
+        </div>
+        <div style="color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 600;">Success Rate</div>
+        <div style="margin-top: 15px;">
+          <a href="#" style="color: rgba(255,255,255,0.8); font-size: 12px; text-decoration: none;">View Analytics <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    </section>
-    <!-- /.content -->
+  <!-- Main Action Cards -->
+  <div class="row" style="margin-bottom: 25px;">
+    <div class="col-md-12">
+      <div class="box box-solid" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <div class="box-header with-border" style="border-bottom: 2px solid #dee2e6; padding: 25px 25px 15px 25px;">
+          <h3 class="box-title" style="font-size: 1.5rem; color: #495057; font-weight: 600;">
+            <i class="fa fa-rocket" style="color: #667eea; margin-right: 10px;"></i>
+            Quick Actions & Navigation
+          </h3>
+        </div>
+        <div class="box-body" style="padding: 25px;">
+          <div class="row">
+            <div class="col-md-4" style="margin-bottom: 20px;">
+              <div class="action-card" style="background: white; border-radius: 15px; padding: 30px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                <div class="action-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; box-shadow: 0 8px 25px rgba(102,126,234,0.3);">
+                  <i class="fa fa-star" style="color: white; font-size: 2rem;"></i>
+                </div>
+                <h4 style="color: #495057; margin-bottom: 15px; font-weight: 600;">Grade Interviews</h4>
+                <p style="color: #6c757d; margin-bottom: 20px; line-height: 1.6;">Review AI analysis results and provide comprehensive grades</p>
+                <a href="interview-results.php" class="btn btn-primary btn-lg" style="width: 100%; border-radius: 10px; padding: 12px; font-weight: 600; text-transform: uppercase;">
+                  <i class="fa fa-arrow-right"></i> Start Grading
+                </a>
+              </div>
+            </div>
+            
+            <div class="col-md-4" style="margin-bottom: 20px;">
+              <div class="action-card" style="background: white; border-radius: 15px; padding: 30px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                <div class="action-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; box-shadow: 0 8px 25px rgba(17,153,142,0.3);">
+                  <i class="fa fa-envelope" style="color: white; font-size: 2rem;"></i>
+                </div>
+                <h4 style="color: #495057; margin-bottom: 15px; font-weight: 600;">Send Invitations</h4>
+                <p style="color: #6c757d; margin-bottom: 20px; line-height: 1.6;">Invite qualified candidates to participate in AI interviews</p>
+                <a href="interview-invitation.php" class="btn btn-success btn-lg" style="width: 100%; border-radius: 10px; padding: 12px; font-weight: 600; text-transform: uppercase;">
+                  <i class="fa fa-arrow-right"></i> Send Invites
+                </a>
+              </div>
+            </div>
+            
+            <div class="col-md-4" style="margin-bottom: 20px;">
+              <div class="action-card" style="background: white; border-radius: 15px; padding: 30px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                <div class="action-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; box-shadow: 0 8px 25px rgba(79,172,254,0.3);">
+                  <i class="fa fa-arrow-left" style="color: white; font-size: 2rem;"></i>
+                </div>
+                <h4 style="color: #495057; margin-bottom: 15px; font-weight: 600;">Main Dashboard</h4>
+                <p style="color: #6c757d; margin-bottom: 20px; line-height: 1.6;">Return to the main admin panel for comprehensive management</p>
+                <a href="../" class="btn btn-info btn-lg" style="width: 100%; border-radius: 10px; padding: 12px; font-weight: 600; text-transform: uppercase;">
+                  <i class="fa fa-arrow-right"></i> Go to Dashboard
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Two Column Layout: Candidates Progress Tracking & Alerts -->
+  <div class="row">
+    <!-- Left Column: Candidates Progress Tracking -->
+    <div class="col-md-8">
+      <div class="box box-solid" style="background: white; border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 25px;">
+        <div class="box-header with-border" style="border-bottom: 2px solid #dee2e6; padding: 25px 25px 15px 25px;">
+          <h3 class="box-title" style="font-size: 1.5rem; color: #495057; font-weight: 600;">
+            <i class="fa fa-users" style="color: #667eea; margin-right: 10px;"></i>
+            Candidates Progress Tracking
+          </h3>
+          <div class="box-tools pull-right">
+            <a href="interview-results.php" class="btn btn-primary" style="border-radius: 10px; padding: 8px 20px; font-weight: 600;">
+              <i class="fa fa-eye"></i> View All
+            </a>
+          </div>
+        </div>
+        <div class="box-body" style="padding: 25px;">
+          <?php if (!$recent_result || mysqli_num_rows($recent_result) == 0): ?>
+            <div class="text-center" style="padding: 40px 20px;">
+              <i class="fa fa-inbox" style="font-size: 4rem; color: #dee2e6; margin-bottom: 20px;"></i>
+              <h4 style="color: #6c757d; margin-bottom: 15px;">No Candidates Yet</h4>
+              <p style="color: #6c757d; margin-bottom: 25px;">Start tracking candidate progress by inviting them to interviews.</p>
+              <a href="interview-invitation.php" class="btn btn-primary btn-lg" style="border-radius: 10px; padding: 12px 25px;">
+                <i class="fa fa-plus"></i> Invite Candidates
+              </a>
+            </div>
+          <?php else: ?>
+            <div class="table-responsive">
+              <table class="table table-hover" style="margin-bottom: 0;">
+                <thead>
+                  <tr style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                    <th style="border: none; padding: 15px; font-weight: 600; color: #495057;">Candidate</th>
+                    <th style="border: none; padding: 15px; font-weight: 600; color: #495057;">Position</th>
+                    <th style="border: none; padding: 15px; font-weight: 600; color: #495057;">Progress</th>
+                    <th style="border: none; padding: 15px; font-weight: 600; color: #495057;">Score</th>
+                    <th style="border: none; padding: 15px; font-weight: 600; color: #495057;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  $count = 0;
+                  while (($interview = mysqli_fetch_object($recent_result)) && $count < 5): 
+                    $ai_score = $interview->ai_score ? round($interview->ai_score, 1) . '%' : 'N/A';
+                    $admin_grade = json_decode($interview->ADMIN_GRADE, true);
+                    $status = $admin_grade ? 'Completed' : 'In Review';
+                    $status_class = $admin_grade ? 'success' : 'warning';
+                    $count++;
+                  ?>
+                    <tr style="transition: all 0.3s ease;">
+                      <td style="padding: 15px; border: none;">
+                        <div style="display: flex; align-items: center;">
+                          <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                            <span style="color: white; font-weight: 600; font-size: 14px;">
+                              <?php echo strtoupper(substr($interview->FNAME, 0, 1) . substr($interview->LNAME, 0, 1)); ?>
+                            </span>
+                          </div>
+                          <div>
+                            <strong style="color: #495057; display: block;"><?php echo $interview->FNAME . ' ' . $interview->LNAME; ?></strong>
+                            <small style="color: #6c757d;"><?php echo $interview->COMPANYNAME; ?></small>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="padding: 15px; border: none;">
+                        <span style="color: #495057; font-weight: 500;"><?php echo $interview->OCCUPATIONTITLE; ?></span>
+                      </td>
+                      <td style="padding: 15px; border: none;">
+                        <span class='label label-<?php echo $status_class; ?>' style='padding: 8px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;'>
+                          <?php echo $status; ?>
+                        </span>
+                      </td>
+                      <td style="padding: 15px; border: none;">
+                        <span class='label label-info' style='padding: 8px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;'>
+                          <?php echo $ai_score; ?>
+                        </span>
+                      </td>
+                      <td style='padding: 15px; border: none;'>
+                        <a href='interview-results.php?action=view&id=<?php echo $interview->REGISTRATIONID; ?>' 
+                           class='btn btn-xs btn-primary' style='border-radius: 8px; padding: 6px 12px;'>
+                          <i class='fa fa-eye'></i> View
+                        </a>
+                      </td>
+                    </tr>
+                  <?php endwhile; ?>
+                </tbody>
+              </table>
+            </div>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Alerts & Notifications -->
+    <div class="col-md-4">
+      <div class="box box-solid" style="background: white; border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 25px;">
+        <div class="box-header with-border" style="border-bottom: 2px solid #dee2e6; padding: 25px 25px 15px 25px;">
+          <h3 class="box-title" style="font-size: 1.5rem; color: #495057; font-weight: 600;">
+            <i class="fa fa-bell" style="color: #667eea; margin-right: 10px;"></i>
+            Alerts & Notifications
+          </h3>
+        </div>
+        <div class="box-body" style="padding: 25px;">
+          <!-- Notification Item 1 -->
+          <div class="notification-item" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); border-radius: 15px; padding: 20px; margin-bottom: 15px; color: white; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -10px; right: -10px; width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%;"></div>
+            <div style="display: flex; align-items: center;">
+              <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                <i class="fa fa-user-plus" style="font-size: 20px;"></i>
+              </div>
+              <div>
+                <h5 style="margin: 0 0 5px 0; font-weight: 600;">New Candidate</h5>
+                <small style="opacity: 0.9;">John Doe applied for Software Developer</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification Item 2 -->
+          <div class="notification-item" style="background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); border-radius: 15px; padding: 20px; margin-bottom: 15px; color: white; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -10px; right: -10px; width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%;"></div>
+            <div style="display: flex; align-items: center;">
+              <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                <i class="fa fa-check-circle" style="font-size: 20px;"></i>
+              </div>
+              <div>
+                <h5 style="margin: 0 0 5px 0; font-weight: 600;">Interview Completed</h5>
+                <small style="opacity: 0.9;">Sarah Smith finished AI interview</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification Item 3 -->
+          <div class="notification-item" style="background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%); border-radius: 15px; padding: 20px; margin-bottom: 15px; color: white; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -10px; right: -10px; width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%;"></div>
+            <div style="display: flex; align-items: center;">
+              <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                <i class="fa fa-star" style="font-size: 20px;"></i>
+              </div>
+              <div>
+                <h5 style="margin: 0 0 5px 0; font-weight: 600;">Grading Required</h5>
+                <small style="opacity: 0.9;">5 interviews need admin review</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification Item 4 -->
+          <div class="notification-item" style="background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%); border-radius: 15px; padding: 20px; margin-bottom: 15px; color: white; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -10px; right: -10px; width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%;"></div>
+            <div style="display: flex; align-items: center;">
+              <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                <i class="fa fa-calendar" style="font-size: 20px;"></i>
+              </div>
+              <div>
+                <h5 style="margin: 0 0 5px 0; font-weight: 600;">System Update</h5>
+                <small style="opacity: 0.9;">New AI features available</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- View All Link -->
+          <div class="text-center" style="margin-top: 20px;">
+            <a href="#" style="color: #667eea; text-decoration: none; font-weight: 600;">
+              View All Notifications <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.info-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.table tbody tr:hover {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  transform: scale(1.01);
+}
+
+.notification-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+</style>
+
+<script>
+$(document).ready(function() {
+  // Enhanced hover effects
+  $('.action-card').hover(
+    function() {
+      $(this).find('.action-icon').css('transform', 'scale(1.1) rotate(5deg)');
+    },
+    function() {
+      $(this).find('.action-icon').css('transform', 'scale(1) rotate(0deg)');
+    }
+  );
+  
+  // Notification hover effects
+  $('.notification-item').hover(
+    function() {
+      $(this).css('transform', 'translateY(-2px) scale(1.02)');
+    },
+    function() {
+      $(this).css('transform', 'translateY(0) scale(1)');
+    }
+  );
+});
+</script>
+
+<?php
+// Include footer
+include('footer.php');
+?>
   

@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="features">
  
-                  <form class="form-horizontal span6  wow fadeInDown" action="controller.php?action=add" method="POST">
+                  <form class="form-horizontal span6  wow fadeInDown" action="controller.php?action=add" method="POST" id="addEmployeeForm" novalidate>
 
                      <div class="form-group">
                       <div class="col-md-8">
@@ -26,10 +26,8 @@
                         "EMPLOYEEID">Employee ID:</label>
 
                         <div class="col-md-8"> 
-                           <!-- <input class="form-control input-sm" id="EMPLOYEEID" name="EMPLOYEEID" placeholder=
-                              "Employee No" type="text" value="<?php echo $res->AUTO; ?>"> -->
-                              <input class="form-control input-sm" id="EMPLOYEEID" name="EMPLOYEEID" placeholder=
-                              "Employee ID" type="text" value="">
+                           <input class="form-control input-sm" id="EMPLOYEEID" name="EMPLOYEEID" placeholder=
+                              "Employee ID" type="text" value="<?php echo $res->AUTO; ?>" readonly>
                      </div>
                       </div>
                     </div>           
@@ -41,7 +39,7 @@
                         <div class="col-md-8">
                           <input name="deptid" type="hidden" value="">
                            <input class="form-control input-sm" id="FNAME" name="FNAME" placeholder=
-                              "Firstname" type="text" value=""   autocomplete="off">
+                              "Firstname" type="text" value=""   required minlength="2" autocomplete="off">
                         </div>
                       </div>
                     </div>
@@ -54,7 +52,7 @@
                         <div class="col-md-8">
                           <input name="deptid" type="hidden" value="">
                           <input  class="form-control input-sm" id="LNAME" name="LNAME" placeholder=
-                              "Lastname"     autocomplete="off">
+                              "Lastname"     required minlength="2" autocomplete="off">
                           </div>
                       </div>
                     </div>
@@ -82,7 +80,7 @@
                       <div class="col-md-8">
                         
                          <textarea class="form-control input-sm" id="ADDRESS" name="ADDRESS" placeholder=
-                            "Address" type="text" value="" required   autocomplete="off"></textarea>
+                            "Address" type="text" value="" required rows="2" autocomplete="off"></textarea>
                       </div>
                     </div>
                   </div> 
@@ -95,13 +93,13 @@
                       <div class="col-md-8">
                          <div class="col-lg-5">
                             <div class="radio">
-                              <label><input checked id="optionsRadios1" checked="True" name="optionsRadios" type="radio" value="Female">Female</label>
+                              <label><input checked id="optionsRadios1" checked="True" name="optionsRadios" type="radio" value="Female" required>Female</label>
                             </div>
                           </div>
 
                           <div class="col-lg-4">
                             <div class="radio">
-                              <label><input id="optionsRadios2"   name="optionsRadios" type="radio" value="Male"> Male</label>
+                              <label><input id="optionsRadios2"   name="optionsRadios" type="radio" value="Male" required> Male</label>
                             </div>
                           </div> 
                          
@@ -182,7 +180,7 @@
                               </div>
                             </div>  
 
-                        <!--     <div class="form-group">
+                             <div class="form-group">
                               <div class="col-md-8">
                                 <label class="col-md-4 control-label" for=
                                 "WORKSTATS">Work Status:</label>
@@ -190,13 +188,13 @@
                                 <div class="col-md-8">
                                   <select class="form-control input-sm" name="WORKSTATS" id="WORKSTATS">
                                       <option value="none" >Select</option>
-                                      <option value="Regular">Temporary</option> 
+                                      <option value="Temporary">Temporary</option> 
                                       <option value="Regular">Regular</option>
                                       <option value="Probationary">Probationary</option> 
                                   </select> 
                                 </div>
                               </div>
-                            </div> -->
+                            </div>
                              <div class="form-group">
                               <div class="col-md-8">
                                 <label class="col-md-4 control-label" for=
@@ -270,4 +268,31 @@
     </section><!--/#feature-->
  
 
+<script>
+// Simple client-side validation for instant feedback
+if (window.jQuery) {
+    $(function() {
+        $('#addEmployeeForm').on('submit', function(e) {
+            var valid = true;
+            $(this).find('[required]').each(function() {
+                if (!$(this).val()) {
+                    $(this).addClass('is-invalid');
+                    valid = false;
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+            if (!valid) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+            }
+        });
+    });
+}
+</script>
+<style>
+.is-invalid { border: 1px solid #d9534f; background: #f2dede; }
+.form-group { margin-bottom: 15px; }
+.btn { margin-right: 5px; }
+</style>
  

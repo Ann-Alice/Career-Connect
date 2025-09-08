@@ -26,10 +26,8 @@
                         "EMPLOYEEID">Employee ID:</label>
 
                         <div class="col-md-8"> 
-                           <!-- <input class="form-control input-sm" id="EMPLOYEEID" name="EMPLOYEEID" placeholder=
-                              "Employee No" type="text" value="<?php echo $res->AUTO; ?>"> -->
-                              <input class="form-control input-sm" id="EMPLOYEEID" name="EMPLOYEEID" placeholder=
-                              "Employee ID" type="text" value="">
+                           <input class="form-control input-sm" id="EMPLOYEEID" name="EMPLOYEEID" placeholder=
+                              "Employee ID" type="text" value="<?php echo $res->AUTO; ?>" readonly>
                      </div>
                       </div>
                     </div>           
@@ -314,3 +312,6 @@
  
 
  
+</original_code>```
+
+```
