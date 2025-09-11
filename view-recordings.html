@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Video Recordings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .video-container {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .video-container h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            background: #000;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Recordings</h1>
+    
+    <div id="videos">
+        <!-- Videos will be loaded here -->
+        <p>Loading videos...</p>
+    </div>
+    
+    <script>
+        // In a real application, you would get the registration ID from your backend
+        // For testing purposes, we're using a test ID
+        const registrationId = 'test'; // Change this to a real registration ID
+        
+        // Load videos
+        async function loadVideos() {
+            try {
+                const response = await fetch(`fetch.php?id=${registrationId}`);
+                const html = await response.text();
+                document.getElementById('videos').innerHTML = html;
+            } catch (error) {
+                document.getElementById('videos').innerHTML = 
+                    '<p>Error loading videos: ' + error.message + '</p>';
+            }
+        }
+        
+        // Load videos when page loads
+        window.addEventListener('load', loadVideos);
+    </script>
+</body>
+</html>

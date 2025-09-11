@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Upload</title>
+</head>
+<body>
+    <h1>Test Upload</h1>
+    <button id="testUpload">Test Upload</button>
+    <div id="status"></div>
+    
+    <script>
+        // Set the web root manually for testing
+        window.interviewConfig = {
+            webRoot: '/Career Connect/Career-Connect/'
+        };
+        
+        document.getElementById('testUpload').addEventListener('click', async function() {
+            const status = document.getElementById('status');
+            status.innerHTML = 'Testing upload...';
+            
+            try {
+                // Create a test blob
+                const testBlob = new Blob(['test recording data'], { type: 'video/webm' });
+                
+                const formData = new FormData();
+                formData.append('video', testBlob, 'test_recording.webm');
+                formData.append('conversationTurn', 1);
+                formData.append('questionType', 'test');
+                formData.append('currentEssentialQuestion', 1);
+                formData.append('duration', 5.0);
+                formData.append('token', 'test_token');
+                formData.append('registrationId', '3');
+                formData.append('transcript', 'Test transcript');
+                formData.append('test', 'true'); // Skip token validation
+                
+                const response = await fetch(window.interviewConfig.webRoot + 'upload-recording-enhanced.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const text = await response.text();
+                status.innerHTML = '<pre>' + JSON.stringify(JSON.parse(text), null, 2) + '</pre>';
+            } catch (error) {
+                status.innerHTML = 'Error: ' + error.message;
+                console.error('Upload error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

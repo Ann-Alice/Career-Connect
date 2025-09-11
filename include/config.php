@@ -3,7 +3,11 @@ defined('server') ? null : define("server", "localhost");
 defined('user') ? null : define ("user", "root") ;
 defined('pass') ? null : define("pass", "");  // No password after reset
 defined('database_name') ? null : define("database_name", "erisdb") ;
-defined('mysql_port') ? null : define("mysql_port", 4306);  // MySQL port set to 4306 as required
+defined('mysql_port') ? null : define("mysql_port", 4306);  // Changed back to 4306
+
+// Performance and Cache Configuration
+defined('CACHE_ENABLED') ? null : define("CACHE_ENABLED", true);
+defined('APP_DEBUG') ? null : define("APP_DEBUG", false); // Changed back to false
 
 // Email Configuration
 defined('ADMIN_EMAIL') ? null : define("ADMIN_EMAIL", "admin@eris.com");
@@ -14,26 +18,19 @@ defined('SMTP_USER') ? null : define("SMTP_USER", "060d15df426995");
 defined('SMTP_PASS') ? null : define("SMTP_PASS", "e46939916ffabe");
 defined('SMTP_ENCRYPTION') ? null : define("SMTP_ENCRYPTION", "tls");
 
-// Calculate web_root dynamically
-$this_file = str_replace('\\', '/', __FILE__);
-$doc_root = $_SERVER['DOCUMENT_ROOT'];
-$web_root = str_replace($doc_root, '', dirname(dirname($this_file)));
-if (substr($web_root, -1) !== '/') {
-    $web_root .= '/';
-}
+// Hardcoded web_root for Career Connect directory structure
+$web_root = '/Career Connect/Career-Connect/';
 define('web_root', $web_root);
 
-// For debugging
-error_log("Document Root: " . $doc_root);
-error_log("Web Root: " . $web_root);
+// Security headers
+if (!headers_sent()) {
+    header("X-Content-Type-Options: nosniff");
+    header("X-Frame-Options: DENY");
+    header("X-XSS-Protection: 1; mode=block");
+    header("Referrer-Policy: strict-origin-when-cross-origin");
+}
 
-// The following lines are commented out as web_root is now explicitly defined.
-// $this_file = str_replace('\\', '/', __File__) ;
-// $doc_root = $_SERVER['DOCUMENT_ROOT();
-// $web_root = str_replace($doc_root, '', SITE_ROOT); 
-// if (substr($web_root, -1) !== '/') {
-//     $web_root .= '/';
-// }
-// define('server_root' , $server_root);
-
-?>
+// For debugging - comment out in production
+// error_log("Document Root: " . $_SERVER['DOCUMENT_ROOT']);
+// error_log("Project Root: " . dirname(dirname(__FILE__)));
+// error_log("Web Root: " . web_root);

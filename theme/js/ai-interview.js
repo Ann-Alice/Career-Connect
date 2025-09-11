@@ -86,13 +86,13 @@ async function initializeInterview(jobData, token, regId) {
         // Initialize face-api.js
         try {
             console.log('Loading face detection models...');
-            await faceapi.nets.tinyFaceDetector.loadFromUri('/eris/theme/models');
+            await faceapi.nets.tinyFaceDetector.loadFromUri(window.interviewConfig.webRoot + 'theme/models');
             console.log('TinyFaceDetector loaded');
-            await faceapi.nets.faceLandmark68Net.loadFromUri('/eris/theme/models');
+            await faceapi.nets.faceLandmark68Net.loadFromUri(window.interviewConfig.webRoot + 'theme/models');
             console.log('FaceLandmark68Net loaded');
-            await faceapi.nets.faceRecognitionNet.loadFromUri('/eris/theme/models');
+            await faceapi.nets.faceRecognitionNet.loadFromUri(window.interviewConfig.webRoot + 'theme/models');
             console.log('FaceRecognitionNet loaded');
-            await faceapi.nets.faceExpressionNet.loadFromUri('/eris/theme/models');
+            await faceapi.nets.faceExpressionNet.loadFromUri(window.interviewConfig.webRoot + 'theme/models');
             console.log('FaceExpressionNet loaded');
         } catch (error) {
             console.error('Error loading face detection models:', error);
@@ -228,7 +228,7 @@ async function generateQuestions() {
             cv_projects: cvProjects
         };
         
-        const response = await fetch('/eris/generate-questions.php', {
+        const response = await fetch(window.interviewConfig.webRoot + 'generate-questions.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -424,7 +424,7 @@ async function saveRecording(blob) {
     formData.append('transcript', transcript);
     
     try {
-        const response = await fetch('/eris/upload-recording-enhanced.php', {
+        const response = await fetch(window.interviewConfig.webRoot + 'upload-recording-enhanced.php', {
             method: 'POST',
             body: formData
         });
@@ -1444,7 +1444,7 @@ function saveInterviewData() {
     
     updateStatus('Saving interview data...', 'info');
     
-    fetch('/eris/complete-interview.php', {
+    fetch(window.interviewConfig.webRoot + 'complete-interview.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -1610,7 +1610,7 @@ async function testMinimalUpload() {
     console.log('Testing minimal upload...');
     
     try {
-        const response = await fetch('/eris/minimal-upload.php', {
+        const response = await fetch(window.interviewConfig.webRoot + 'minimal-upload.php', {
             method: 'POST',
             body: formData
         });
@@ -1657,7 +1657,7 @@ async function testUpload() {
     console.log('Testing simple upload...');
     
     try {
-        const response = await fetch('/eris/simple-upload.php', {
+        const response = await fetch(window.interviewConfig.webRoot + 'simple-upload.php', {
             method: 'POST',
             body: formData
         });
@@ -1719,7 +1719,7 @@ async function testFullUpload() {
     console.log('FormData created with token:', interviewToken);
     
     try {
-        const response = await fetch('/eris/upload-interview.php', {
+        const response = await fetch(window.interviewConfig.webRoot + 'upload-interview.php', {
             method: 'POST',
             body: formData
         });
@@ -1760,7 +1760,7 @@ async function checkTokenValidity() {
     }
     
     try {
-        const response = await fetch('/eris/check-token.php', {
+        const response = await fetch(window.interviewConfig.webRoot + 'check-token.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1785,7 +1785,7 @@ async function extendTokenExpiry() {
     }
     
     try {
-        const response = await fetch('/eris/extend-token.php', {
+        const response = await fetch(window.interviewConfig.webRoot + 'extend-token.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

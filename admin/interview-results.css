@@ -130,6 +130,32 @@
     background: white;
 }
 
+/* Analysis Breakdown Specific Styles */
+.analysis-breakdown .analysis-card {
+    margin-bottom: 20px;
+}
+
+.analysis-breakdown .analysis-card h5 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.analysis-breakdown .metric-item {
+    margin-bottom: 15px;
+}
+
+.analysis-breakdown .progress {
+    height: 10px;
+    margin-top: 5px;
+    background: #edf2f7;
+}
+
+.analysis-breakdown .progress-bar {
+    border-radius: 5px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .candidate-card {
@@ -149,6 +175,10 @@
     
     .bulk-email-section {
         padding: 15px;
+    }
+    
+    .analysis-breakdown .col-md-6 {
+        margin-bottom: 20px;
     }
 }
 

@@ -157,10 +157,11 @@ function doAddFiles(){
 	// Move uploaded file to applicant-specific directory
 	$location = $applicant_dir . "/" . $picture;
 
+	// Use prepared statement to prevent SQL injection
 	$sql = "INSERT INTO `tblattachmentfile` (`JOBID`, `FILE_NAME`, `FILE_LOCATION`, `USERATTACHMENTID`) 
-		VALUES ('".$_SESSION['APPLICANTID']."','','Resume','{$location}','".$_SESSION['APPLICANTID']."')";
-	$mydb->setQuery($sql); 
-	$res = $mydb->executeQuery();
+		VALUES (?, ?, ?, ?)";
+	$mydb->setQuery($sql);
+	$res = $mydb->executePreparedStatement($mydb->prepareStatement($sql, [$applicant_id, '', 'Resume', $location, $applicant_id], 'sssss'));
 
 	message("File has been uploaded!", "success");
 	redirect("index.php?tab=files");

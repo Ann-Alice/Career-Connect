@@ -19,8 +19,8 @@ try {
         $adminPassword = 'admin123';
         $adminPasswordHash = sha1($adminPassword);
         
-        $sql = "INSERT INTO tblusers (USERID, FULLNAME, USERNAME, PASS, ROLE, IS_ACTIVE) 
-                VALUES ('{$mydb->escape_string($adminId)}', '{$mydb->escape_string($adminName)}', '{$mydb->escape_string($adminUsername)}', '{$mydb->escape_string($adminPasswordHash)}', 'Administrator', 1)";
+        $sql = "INSERT INTO tblusers (USERID, FULLNAME, USERNAME, PASS, ROLE, PICLOCATION) 
+                VALUES ('{$mydb->escape_string($adminId)}', '{$mydb->escape_string($adminName)}', '{$mydb->escape_string($adminUsername)}', '{$mydb->escape_string($adminPasswordHash)}', 'Administrator', '')";
         
         $mydb->setQuery($sql);
         if ($mydb->executeQuery()) {
@@ -43,4 +43,4 @@ try {
 } catch (Exception $e) {
     echo "<p style='color: red;'>❌ Error: " . $e->getMessage() . "</p>";
 }
-?> 
+?>

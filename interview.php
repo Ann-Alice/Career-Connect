@@ -381,7 +381,8 @@ $jobDataJson = json_encode($jobData);
         window.interviewConfig = {
             jobData: <?php echo $jobDataJson; ?>,
             interviewToken: '<?php echo $token; ?>',
-            registrationId: '<?php echo $invitation->REGISTRATIONID; ?>'
+            registrationId: '<?php echo $invitation->REGISTRATIONID; ?>',
+            webRoot: '<?php echo web_root; ?>'
         };
         
         // Voice selection functionality

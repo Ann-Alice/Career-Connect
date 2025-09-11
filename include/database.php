@@ -87,18 +87,35 @@ class Database {
     }
     
     function setQuery($sql='') {
-        $this->sql_string = $sql;
+        // Optimize query if needed
+        $this->sql_string = Performance::optimizeQuery($sql);
     }
     
     function executeQuery() {
         // Log the SQL query for debugging
         error_log("Executing SQL query: " . $this->sql_string);
         
+        // Log query for performance monitoring
+        $start_time = microtime(true);
+        
         $result = mysqli_query($this->conn, $this->sql_string);
+        
+        // Calculate execution time
+        $end_time = microtime(true);
+        $execution_time = ($end_time - $start_time) * 1000; // Convert to milliseconds
+        
+        // Log query performance
+        Performance::logQuery($this->sql_string, $execution_time);
+        
         if (!$result) {
             $this->error_no = mysqli_errno($this->conn);
             $this->error_msg = mysqli_error($this->conn);
             error_log("Query failed: " . $this->sql_string . " - Error: " . $this->error_msg);
+            ErrorHandler::error("Database query failed", [
+                'query' => $this->sql_string,
+                'error' => $this->error_msg,
+                'error_no' => $this->error_no
+            ]);
             throw new Exception("Database query failed: " . $this->error_msg . " (Error #" . $this->error_no . ")");
         }
         return $result;
@@ -109,10 +126,90 @@ class Database {
             $this->error_no = mysqli_errno($this->conn);
             $this->error_msg = mysqli_error($this->conn);
             error_log("Query failed: " . $this->sql_string . " - Error: " . $this->error_msg);
+            ErrorHandler::error("Database query failed", [
+                'query' => $this->sql_string,
+                'error' => $this->error_msg,
+                'error_no' => $this->error_no
+            ]);
             return false;                
         }
         return $result;
     } 
+    
+    // Enhanced method for prepared statements with proper parameter binding
+    public function prepareStatement($sql, $params = [], $types = '') {
+        // Optimize query if needed
+        $sql = Performance::optimizeQuery($sql);
+        
+        $stmt = mysqli_prepare($this->conn, $sql);
+        if ($stmt) {
+            if (!empty($params) && !empty($types)) {
+                // Bind parameters if provided
+                mysqli_stmt_bind_param($stmt, $types, ...$params);
+            }
+            return $stmt;
+        }
+        return false;
+    }
+    
+    // Enhanced method to execute prepared statements
+    public function executePreparedStatement($stmt) {
+        if (mysqli_stmt_execute($stmt)) {
+            return mysqli_stmt_get_result($stmt);
+        }
+        return false;
+    }
+    
+    // New method to fetch single result using prepared statement
+    public function loadSingleResultPrepared($sql, $params = [], $types = '') {
+        $stmt = $this->prepareStatement($sql, $params, $types);
+        if ($stmt) {
+            $result = $this->executePreparedStatement($stmt);
+            if ($result) {
+                $data = mysqli_fetch_object($result);
+                mysqli_stmt_close($stmt);
+                return $data;
+            }
+            mysqli_stmt_close($stmt);
+        }
+        return null;
+    }
+    
+    // New method to fetch result list using prepared statement
+    public function loadResultListPrepared($sql, $params = [], $types = '') {
+        $stmt = $this->prepareStatement($sql, $params, $types);
+        if ($stmt) {
+            $result = $this->executePreparedStatement($stmt);
+            if ($result) {
+                $array = array();
+                while ($row = mysqli_fetch_object($result)) {
+                    $array[] = $row;
+                }
+                mysqli_stmt_close($stmt);
+                return $array;
+            }
+            mysqli_stmt_close($stmt);
+        }
+        return array();
+    }
+    
+    // Cached query execution
+    public function loadResultListCached($key, $sql, $duration = 300) {
+        // Try to get from cache first
+        $cached = Performance::getCached($key);
+        if ($cached !== false) {
+            return $cached;
+        }
+        
+        // Execute query and cache result
+        $this->setQuery($sql);
+        $result = $this->loadResultList();
+        
+        // Cache the result
+        Performance::cache($key, $result, $duration);
+        
+        return $result;
+    }
     
     function loadResultList($key='') {
         $cur = $this->executeQuery();

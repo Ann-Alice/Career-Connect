@@ -4,6 +4,12 @@
     <title>Login to Career Connect</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    // Initialize session and CSRF token
+    require_once("../include/initialize.php");
+    // Generate CSRF token
+    $csrfToken = generateCSRFToken();
+    ?>
     <style>
         body {
             margin: 0;
@@ -126,13 +132,39 @@
                 font-size: 22px;
             }
         }
+        
+        /* Message styling */
+        .message {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="login-title">Login to Career Connect</div>
         
+        <?php check_message(); ?>
+        
         <form action="process.php?action=login" method="post">
+            <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
             <div class="form-group">
                 <label for="USERNAME">Username</label>
                 <div class="input-container">

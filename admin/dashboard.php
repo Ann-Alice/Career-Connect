@@ -67,6 +67,7 @@ $total_companies = $total_companies_result ? $total_companies_result->count : 0;
             background: #f8f9fa;
             margin: 0;
             padding: 0;
+            padding-top: 120px; /* Account for fixed header and breadcrumb */
         }
         
         .main-header {
@@ -74,6 +75,12 @@ $total_companies = $total_companies_result ? $total_companies_result->count : 0;
             color: white;
             padding: 15px 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 70px;
         }
         
         .header-content {
@@ -118,13 +125,25 @@ $total_companies = $total_companies_result ? $total_companies_result->count : 0;
             padding: 10px 0;
             margin: 0;
             border-radius: 0;
+            position: fixed;
+            top: 70px; /* Header height */
+            left: 0;
+            right: 0;
+            z-index: 999;
+            height: 50px;
         }
         
         .sidebar {
             background: #2c3e50;
-            min-height: calc(100vh - 120px);
+            position: fixed;
+            top: 120px; /* Header + breadcrumb height */
+            left: 0;
+            bottom: 0;
+            width: 16.66666667%; /* col-md-2 width */
             padding: 0;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            z-index: 998;
         }
         
         .sidebar-menu {
@@ -166,6 +185,8 @@ $total_companies = $total_companies_result ? $total_companies_result->count : 0;
         .main-content {
             padding: 25px;
             background: #f8f9fa;
+            margin-top: 20px;
+            min-height: calc(100vh - 120px); /* Ensure content fills available space */
         }
         
         .content-header {
@@ -331,6 +352,12 @@ $total_companies = $total_companies_result ? $total_companies_result->count : 0;
             background: #229954;
             color: white;
         }
+        
+        /* Adjust main content column to account for fixed sidebar */
+        .main-content-wrapper {
+            margin-left: 16.66666667%; /* col-md-2 width */
+            padding-right: 15px;
+        }
     </style>
 </head>
 <body>
@@ -383,7 +410,7 @@ $total_companies = $total_companies_result ? $total_companies_result->count : 0;
             </div>
             
             <!-- Main Content -->
-            <div class="col-md-10">
+            <div class="col-md-10 main-content-wrapper">
                 <div class="main-content">
                     <div class="content-header">
                         <h1 class="content-title">Application Management</h1>
@@ -565,7 +592,7 @@ $total_companies = $total_companies_result ? $total_companies_result->count : 0;
         const detailsHtml = `
             <div class="row">
                 <div class="col-md-4 text-center" style="margin-bottom: 20px;">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 30px; color: white; box-shadow: 0 8px 25px rgba(102,126,234,0.3);">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 30px; color: white; box-shadow: 0 8px 25px rgba(102,126,234,0.3); margin-top: 20px;">
                         <div style="background: rgba(255,255,255,0.2); border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto;">
                             <i class="fa fa-user" style="font-size: 2rem; color: white;"></i>
                         </div>
@@ -686,4 +713,4 @@ $total_companies = $total_companies_result ? $total_companies_result->count : 0;
     });
     </script>
 </body>
-</html> 
+</html>

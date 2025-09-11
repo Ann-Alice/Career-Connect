@@ -1,3 +1,13 @@
+<?php
+// Check if APPLICANTID session variable is set and not empty
+if (!isset($_SESSION['APPLICANTID']) || empty($_SESSION['APPLICANTID'])) {
+    echo '<div class="alert alert-danger">Error: Applicant session not found. Please log in again.</div>';
+    return;
+}
+
+$applicantId = $_SESSION['APPLICANTID'];
+?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Main content -->
@@ -28,14 +38,14 @@
                 </thead>
                 <tbody>
                   <?php
+                  // Use prepared statement to prevent SQL injection and ensure proper parameter binding
                   $sql = "SELECT r.*, c.COMPANYNAME, c.COMPANYADDRESS, j.OCCUPATIONTITLE, j.DATEPOSTED 
                           FROM `tblcompany` c, `tbljobregistration` r, `tbljob` j 
                           WHERE c.`COMPANYID`=r.`COMPANYID` 
                           AND r.`JOBID`=j.`JOBID` 
-                          AND r.`APPLICANTID` = {$_SESSION['APPLICANTID']}
+                          AND r.`APPLICANTID` = ?
                           ORDER BY r.REGISTRATIONID DESC";
-                  $mydb->setQuery($sql);
-                  $cur = $mydb->loadResultList();
+                  $cur = $mydb->loadResultListPrepared($sql, [$applicantId], 's');
                   foreach ($cur as $result) {
                     $statusClass = '';
                     switch(strtolower($result->REMARKS)) {
@@ -97,5 +107,3 @@ $(document).ready(function() {
   });
 });
 </script>
-   
- 

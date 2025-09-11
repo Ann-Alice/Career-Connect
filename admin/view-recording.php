@@ -86,7 +86,47 @@ if ($actual_recording_file) {
     $recording_file = $demo_recording_file;
     $show_actual_video = false;
 } else {
-    // Create demo recording file for testing
+    // Check if any recordings exist in the database
+    $sql = "SELECT COUNT(*) as count FROM tblinterviewrecordings WHERE REGISTRATIONID = $registration_id";
+    $mydb->setQuery($sql);
+    $recording_count = $mydb->loadSingleResult();
+    
+    $sql = "SELECT COUNT(*) as count FROM tblinterviewvideos WHERE REGISTRATIONID = $registration_id";
+    $mydb->setQuery($sql);
+    $video_count = $mydb->loadSingleResult();
+    
+    // Create a more informative error message
+    $error_message = "No interview recording found for this candidate.\n\n";
+    $error_message .= "Registration ID: {$registration_id}\n";
+    $error_message .= "Candidate: {$interview->FNAME} {$interview->LNAME}\n";
+    $error_message .= "Position: {$interview->OCCUPATIONTITLE}\n\n";
+    
+    if ($recording_count->count == 0 && $video_count->count == 0) {
+        $error_message .= "Reason: No recordings were saved in the database for this interview.\n";
+        $error_message .= "This could mean:\n";
+        $error_message .= "- The candidate did not complete the interview\n";
+        $error_message .= "- There was an error during the recording process\n";
+        $error_message .= "- The recording was not properly saved\n\n";
+        $error_message .= "Next steps:\n";
+        $error_message .= "1. Check if the candidate received and completed the interview\n";
+        $error_message .= "2. Consider resending the interview invitation\n";
+        $error_message .= "3. Check system logs for recording errors";
+    } else {
+        $error_message .= "Reason: Recording files were found in the database but could not be located on the file system.\n";
+        $error_message .= "This could mean:\n";
+        $error_message .= "- The recording files were moved or deleted\n";
+        $error_message .= "- There is a path configuration issue\n";
+        $error_message .= "- File permissions prevent access to the recordings\n\n";
+        $error_message .= "Database records found:\n";
+        $error_message .= "- Individual recordings: {$recording_count->count}\n";
+        $error_message .= "- Consolidated videos: {$video_count->count}\n\n";
+        $error_message .= "Next steps:\n";
+        $error_message .= "1. Verify file paths in the database\n";
+        $error_message .= "2. Check file system permissions\n";
+        $error_message .= "3. Confirm recording directory exists and is writable";
+    }
+    
+    // Create demo recording file with error information
     $recording_file = "../interview-recordings/interview_{$registration_id}.mp4";
     
     // Create directory if it doesn't exist
@@ -95,19 +135,9 @@ if ($actual_recording_file) {
         mkdir($recording_dir, 0777, true);
     }
     
-    // Create a demo text file that can be viewed (since we don't have actual video)
+    // Create a demo text file with error information
     if (!file_exists($recording_file)) {
-        $demo_content = "DEMO INTERVIEW RECORDING\n";
-        $demo_content .= "========================\n\n";
-        $demo_content .= "Registration ID: {$registration_id}\n";
-        $demo_content .= "Candidate: {$interview->FNAME} {$interview->LNAME}\n";
-        $demo_content .= "Position: {$interview->OCCUPATIONTITLE}\n";
-        $demo_content .= "Company: {$interview->COMPANYNAME}\n";
-        $demo_content .= "Recording Date: " . date('Y-m-d H:i:s') . "\n\n";
-        $demo_content .= "This is a demonstration file showing where the actual interview recording would be stored.\n\n";
-        $demo_content .= "In production, this would be a video file (.mp4 or .webm) containing the actual interview session.\n";
-        
-        file_put_contents($recording_file, $demo_content);
+        file_put_contents($recording_file, $error_message);
         chmod($recording_file, 0644);
     }
     $show_actual_video = false;
@@ -179,6 +209,14 @@ $demo_content = file_get_contents($recording_file);
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
+        .error-content {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #856404;
+        }
     </style>
 </head>
 <body>
@@ -219,11 +257,11 @@ $demo_content = file_get_contents($recording_file);
                 </div>
             </div>
         <?php else: ?>
-            <!-- Demo Content Display -->
+            <!-- Error/Information Display -->
             <div class="demo-video">
-                <i class="fa fa-play-circle" style="font-size: 4rem; margin-bottom: 15px; opacity: 0.7;"></i>
-                <h4>Demo Interview Recording</h4>
-                <p style="opacity: 0.8; margin-bottom: 20px;">This is a demonstration of the interview recording system</p>
+                <i class="fa fa-exclamation-triangle" style="font-size: 4rem; margin-bottom: 15px; opacity: 0.7; color: #ffc107;"></i>
+                <h4>Recording Not Available</h4>
+                <p style="opacity: 0.8; margin-bottom: 20px;">Interview recording could not be found or accessed</p>
                 
                 <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; margin: 20px 0;">
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
@@ -233,20 +271,23 @@ $demo_content = file_get_contents($recording_file);
                             <strong>File Size:</strong> <?php echo round(filesize($recording_file) / 1024, 2); ?> KB
                         </div>
                         <div style="text-align: right;">
-                            <strong>Status:</strong> Demo Mode<br>
+                            <strong>Status:</strong> <span style="color: #dc3545;">❌ Recording Unavailable</span><br>
                             <strong>Duration:</strong> N/A<br>
-                            <strong>Quality:</strong> Demo
+                            <strong>Quality:</strong> N/A
                         </div>
                     </div>
                 </div>
                 
                 <p style="font-size: 12px; opacity: 0.6; margin-top: 20px;">
-                    In production, this would show the actual video recording of the AI interview session
+                    Please check the information below for details on why the recording is unavailable
                 </p>
             </div>
             
-            <div class="demo-content">
-                <?php echo htmlspecialchars(file_get_contents($recording_file)); ?>
+            <div class="error-content">
+                <h5><i class="fa fa-info-circle"></i> Recording Issue Details</h5>
+                <div class="demo-content">
+                    <?php echo htmlspecialchars(file_get_contents($recording_file)); ?>
+                </div>
             </div>
         <?php endif; ?>
         
@@ -285,7 +326,7 @@ $demo_content = file_get_contents($recording_file);
             window.location.href = 'download-video.php?id=<?php echo $registration_id; ?>';
         }
         <?php else: ?>
-        // Download demo content
+        // Download error information
         if (window.opener && window.opener.downloadVideoRecording) {
             window.opener.downloadVideoRecording(<?php echo $registration_id; ?>);
         } else {

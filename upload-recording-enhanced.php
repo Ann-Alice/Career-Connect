@@ -64,9 +64,7 @@ try {
     // Validate token and get registration info (skip for test uploads)
     if (!$is_test) {
         $sql = "SELECT * FROM tblinterviewinvitations WHERE TOKEN = ? AND EXPIRY_DATE > NOW()";
-        $mydb->setQuery($sql);
-        $mydb->bind_param('s', $token);
-        $invitation = $mydb->loadSingleResult();
+        $invitation = $mydb->loadSingleResultPrepared($sql, [$token], 's');
         
         if (!$invitation) {
             throw new Exception('Invalid or expired authentication token');
@@ -140,23 +138,32 @@ try {
                 (REGISTRATIONID, QUESTION_NUMBER, FILE_PATH, DURATION, RECORDED_AT, CONVERSATION_TURN, QUESTION_TYPE, TRANSCRIPT) 
                 VALUES (?, ?, ?, ?, NOW(), ?, ?, ?)";
         
-        $mydb->setQuery($sql);
-        $mydb->bind_param('sisidss', 
-            $registration_id, 
-            $current_question, 
-            $file_path, 
-            $duration, 
-            $conversation_turn, 
-            $question_type, 
+        $params = [
+            $registration_id,
+            $current_question,
+            $file_path,
+            $duration,
+            $conversation_turn,
+            $question_type,
             $transcript
-        );
+        ];
+        $types = 'sisidiss';
         
-        if (!$mydb->executeQuery()) {
+        // Prepare and execute the statement
+        $stmt = $mydb->prepareStatement($sql, $params, $types);
+        if (!$stmt) {
             // Delete the uploaded file if database insert fails
             unlink($file_path);
-            throw new Exception('Failed to save recording info to database: ' . $mydb->getLastError());
+            throw new Exception('Failed to prepare recording info statement: ' . $mydb->error_msg);
         }
         
+        if (!$mydb->executePreparedStatement($stmt)) {
+            // Delete the uploaded file if database insert fails
+            unlink($file_path);
+            throw new Exception('Failed to save recording info to database: ' . $mydb->error_msg);
+        }
+        
+        mysqli_stmt_close($stmt);
         error_log("Recording metadata saved to database successfully");
     }
     

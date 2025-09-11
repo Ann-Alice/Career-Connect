@@ -16,6 +16,28 @@ function displayMessage() {
     return '';
 }
 
+// Function to send a message to a candidate's inbox
+function sendMessageToCandidate($receiverId, $senderId, $subject, $message) {
+    global $mydb;
+    
+    try {
+        // Use prepared statement for security
+        $sql = "INSERT INTO tblmessages (RECEIVERID, SENDERID, SUBJECT, MESSAGE, DATESENT) VALUES (?, ?, ?, ?, NOW())";
+        $mydb->setQuery($sql);
+        $result = $mydb->executeQuery(array($receiverId, $senderId, $subject, $message));
+        
+        if (!$result) {
+            error_log("Failed to send message: " . $mydb->getLastError());
+            return false;
+        }
+        
+        return true;
+    } catch (Exception $e) {
+        error_log("Error sending message: " . $e->getMessage());
+        return false;
+    }
+}
+
 // Essential functions that were in function.php
 function redirect($location=Null){
     if($location!=Null){
@@ -103,4 +125,4 @@ function getCurrentUserName() {
     }
     return null;
 }
-?> 
+?>

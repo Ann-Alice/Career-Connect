@@ -1,4 +1,4 @@
-hi<?php
+<?php
 require_once('../include/initialize.php');
 require_once('../include/config.php');
 require_once('../include/database.php');
@@ -29,33 +29,6 @@ switch ($action) {
         break;
 }
 
-function sendMessage($receiverId, $subject, $message) {
-    global $mydb;
-    
-    try {
-        // Use escape_string for proper escaping
-        $receiverId = $mydb->escape_string($receiverId);
-        $subject = $mydb->escape_string($subject);
-        $message = $mydb->escape_string($message);
-        $senderId = $mydb->escape_string($_SESSION['ADMIN_USERID']);
-        
-        $sql = "INSERT INTO tblmessages (RECEIVERID, SENDERID, SUBJECT, MESSAGE, DATESENT) 
-                VALUES ('{$receiverId}', '{$senderId}', '{$subject}', '{$message}', NOW())";
-        $mydb->setQuery($sql);
-        $result = $mydb->executeQuery();
-        
-        if (!$result) {
-            error_log("Failed to send message: " . $mydb->getLastError());
-            return false;
-        }
-        
-        return true;
-    } catch (Exception $e) {
-        error_log("Error sending message: " . $e->getMessage());
-        return false;
-    }
-}
-
 function doApproveApplication() {
     global $mydb;
     
@@ -71,7 +44,7 @@ function doApproveApplication() {
     $mydb->executeQuery();
     
     // Get application details for messaging
-    $sql = "SELECT r.*, a.EMAILADDRESS, a.FNAME, a.LNAME, j.OCCUPATIONTITLE 
+    $sql = "SELECT r.*, a.EMAILADDRESS, a.FNAME, a.LNAME, j.OCCUPATIONTITLE, a.APPLICANTID 
             FROM tbljobregistration r 
             JOIN tblapplicants a ON r.APPLICANTID = a.APPLICANTID 
             JOIN tbljob j ON r.JOBID = j.JOBID 
@@ -81,7 +54,7 @@ function doApproveApplication() {
     
     // Try to send message
     $message = "Your application for {$application->OCCUPATIONTITLE} has been approved! You will receive an interview invitation soon.";
-    sendMessage($application->APPLICANTID, 'Application Approved', $message);
+    sendMessageToCandidate($application->APPLICANTID, $_SESSION['ADMIN_USERID'], 'Application Approved', $message);
     
     message("Application approved successfully!", "success");
     redirect_to("interview-invitation.php");
@@ -102,7 +75,7 @@ function doRejectApplication() {
     $mydb->executeQuery();
     
     // Get application details for messaging
-    $sql = "SELECT r.*, a.EMAILADDRESS, a.FNAME, a.LNAME, j.OCCUPATIONTITLE 
+    $sql = "SELECT r.*, a.EMAILADDRESS, a.FNAME, a.LNAME, j.OCCUPATIONTITLE, a.APPLICANTID
             FROM tbljobregistration r 
             JOIN tblapplicants a ON r.APPLICANTID = a.APPLICANTID 
             JOIN tbljob j ON r.JOBID = j.JOBID 
@@ -112,7 +85,7 @@ function doRejectApplication() {
     
     // Try to send message
     $message = "We regret to inform you that your application for {$application->OCCUPATIONTITLE} has not been successful at this time.";
-    sendMessage($application->APPLICANTID, 'Application Status Update', $message);
+    sendMessageToCandidate($application->APPLICANTID, $_SESSION['ADMIN_USERID'], 'Application Status Update', $message);
     
     message("Application rejected successfully!", "success");
     redirect_to("interview-invitation.php");
@@ -128,7 +101,7 @@ function doSendInvitation() {
     $registration_id = $_GET['id'];
     
     // Get application details
-    $sql = "SELECT r.*, a.EMAILADDRESS, a.FNAME, a.LNAME, j.OCCUPATIONTITLE 
+    $sql = "SELECT r.*, a.EMAILADDRESS, a.FNAME, a.LNAME, j.OCCUPATIONTITLE, a.APPLICANTID
             FROM tbljobregistration r 
             JOIN tblapplicants a ON r.APPLICANTID = a.APPLICANTID 
             JOIN tbljob j ON r.JOBID = j.JOBID 
@@ -176,7 +149,7 @@ function doSendInvitation() {
     if (sendInterviewInvitationEmail($to, $candidateName, $positionTitle, $interview_url, $expiry_date, $companyName)) {
         // Try to send message
         $inbox_message = "You have been invited to complete an AI interview for {$application->OCCUPATIONTITLE}. Click here to start: {$interview_url}";
-        sendMessage($application->APPLICANTID, 'AI Interview Invitation', $inbox_message);
+        sendMessageToCandidate($application->APPLICANTID, $_SESSION['ADMIN_USERID'], 'AI Interview Invitation', $inbox_message);
         
         message("Interview invitation sent successfully!", "success");
     } else {
@@ -185,4 +158,4 @@ function doSendInvitation() {
     
     redirect_to("interview-invitation.php");
 }
-?> 
+?>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Recorder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #videoPreview {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            background: #000;
+            border-radius: 8px;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .record-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        .stop-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .upload-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+        .disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Interview Recorder</h1>
+    
+    <div>
+        <video id="videoPreview" autoplay muted></video>
+    </div>
+    
+    <div class="controls">
+        <button id="startBtn" class="record-btn">Start Recording</button>
+        <button id="stopBtn" class="stop-btn disabled" disabled>Stop Recording</button>
+        <button id="uploadBtn" class="upload-btn disabled" disabled>Upload Recording</button>
+    </div>
+    
+    <div id="status">Ready to start recording...</div>
+    
+    <script>
+        let mediaRecorder;
+        let recordedChunks = [];
+        let stream;
+        let registrationId = 'test'; // In a real app, this would come from your backend
+        let conversationTurn = 1;
+        let questionType = 'initial_answer';
+        let currentQuestion = 1;
+        
+        const videoPreview = document.getElementById('videoPreview');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const statusDiv = document.getElementById('status');
+        
+        // Initialize camera
+        async function initCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: true, 
+                    audio: true 
+                });
+                videoPreview.srcObject = stream;
+                updateStatus('Camera initialized. Ready to record.');
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+                updateStatus('Error accessing camera: ' + err.message);
+            }
+        }
+        
+        // Update status message
+        function updateStatus(message) {
+            statusDiv.textContent = message;
+            console.log(message);
+        }
+        
+        // Start recording
+        function startRecording() {
+            if (!stream) {
+                updateStatus('Camera not initialized');
+                return;
+            }
+            
+            recordedChunks = [];
+            
+            // Create MediaRecorder instance
+            mediaRecorder = new MediaRecorder(stream, {
+                mimeType: 'video/webm; codecs=vp9'
+            });
+            
+            // Handle data available event
+            mediaRecorder.ondataavailable = function(event) {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+            
+            // Handle stop event
+            mediaRecorder.onstop = function() {
+                updateStatus('Recording stopped. Ready to upload.');
+                uploadBtn.disabled = false;
+                uploadBtn.classList.remove('disabled');
+            };
+            
+            // Start recording
+            mediaRecorder.start();
+            updateStatus('Recording started...');
+            
+            // Update button states
+            startBtn.disabled = true;
+            startBtn.classList.add('disabled');
+            stopBtn.disabled = false;
+            stopBtn.classList.remove('disabled');
+        }
+        
+        // Stop recording
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                
+                // Stop all tracks
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+                
+                // Update button states
+                startBtn.disabled = false;
+                startBtn.classList.remove('disabled');
+                stopBtn.disabled = true;
+                stopBtn.classList.add('disabled');
+            }
+        }
+        
+        // Upload recording
+        async function uploadRecording() {
+            if (recordedChunks.length === 0) {
+                updateStatus('No recording to upload');
+                return;
+            }
+            
+            try {
+                updateStatus('Uploading recording...');
+                
+                // Create blob from recorded chunks
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                
+                // Create FormData
+                const formData = new FormData();
+                formData.append('video', blob, 'interview-recording.webm');
+                formData.append('token', ''); // In a real app, this would be a valid token
+                formData.append('test', 'true'); // For testing without token validation
+                formData.append('conversationTurn', conversationTurn);
+                formData.append('questionType', questionType);
+                formData.append('currentEssentialQuestion', currentQuestion);
+                formData.append('duration', Math.floor(blob.size / 1024 / 1024 * 8)); // Rough estimate
+                
+                // Send to server
+                const response = await fetch('upload.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    updateStatus('Recording uploaded successfully! File: ' + result.filename);
+                    uploadBtn.disabled = true;
+                    uploadBtn.classList.add('disabled');
+                } else {
+                    updateStatus('Upload failed: ' + result.error);
+                }
+            } catch (err) {
+                console.error('Upload error:', err);
+                updateStatus('Upload error: ' + err.message);
+            }
+        }
+        
+        // Event listeners
+        startBtn.addEventListener('click', startRecording);
+        stopBtn.addEventListener('click', stopRecording);
+        uploadBtn.addEventListener('click', uploadRecording);
+        
+        // Initialize camera on page load
+        window.addEventListener('load', initCamera);
+    </script>
+</body>
+</html>

@@ -170,7 +170,7 @@ window.saveRecordingFixed = async function(blob, duration) {
     try {
         console.log('📤 Uploading to server...');
         
-        const response = await fetch('/eris/simple-upload-working.php', {
+        const response = await fetch(window.interviewConfig.webRoot + 'simple-upload-working.php', {
             method: 'POST',
             body: formData
         });

@@ -208,3 +208,184 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\xampp\htdocs\eris\upload-recording-enhanced.php on line 68
+[08-Sep-2025 23:34:52 Europe/Berlin] === Enhanced Recording Upload Started ===
+[08-Sep-2025 23:34:52 Europe/Berlin] Request Method: POST
+[08-Sep-2025 23:34:52 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[08-Sep-2025 23:34:52 Europe/Berlin] FILES Data: ["video"]
+[08-Sep-2025 23:34:52 Europe/Berlin] Document Root: C:/xampp/htdocs
+[08-Sep-2025 23:34:52 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[08-Sep-2025 23:34:52 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[08-Sep-2025 23:35:32 Europe/Berlin] === Enhanced Recording Upload Started ===
+[08-Sep-2025 23:35:32 Europe/Berlin] Request Method: POST
+[08-Sep-2025 23:35:32 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[08-Sep-2025 23:35:32 Europe/Berlin] FILES Data: ["video"]
+[08-Sep-2025 23:35:32 Europe/Berlin] Document Root: C:/xampp/htdocs
+[08-Sep-2025 23:35:32 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[08-Sep-2025 23:35:32 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[08-Sep-2025 23:36:17 Europe/Berlin] === Enhanced Recording Upload Started ===
+[08-Sep-2025 23:36:17 Europe/Berlin] Request Method: POST
+[08-Sep-2025 23:36:17 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[08-Sep-2025 23:36:17 Europe/Berlin] FILES Data: ["video"]
+[08-Sep-2025 23:36:17 Europe/Berlin] Document Root: C:/xampp/htdocs
+[08-Sep-2025 23:36:17 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[08-Sep-2025 23:36:17 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[08-Sep-2025 23:37:07 Europe/Berlin] === Enhanced Recording Upload Started ===
+[08-Sep-2025 23:37:07 Europe/Berlin] Request Method: POST
+[08-Sep-2025 23:37:07 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[08-Sep-2025 23:37:07 Europe/Berlin] FILES Data: ["video"]
+[08-Sep-2025 23:37:07 Europe/Berlin] Document Root: C:/xampp/htdocs
+[08-Sep-2025 23:37:07 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[08-Sep-2025 23:37:07 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[08-Sep-2025 23:37:51 Europe/Berlin] === Enhanced Recording Upload Started ===
+[08-Sep-2025 23:37:51 Europe/Berlin] Request Method: POST
+[08-Sep-2025 23:37:51 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[08-Sep-2025 23:37:51 Europe/Berlin] FILES Data: ["video"]
+[08-Sep-2025 23:37:51 Europe/Berlin] Document Root: C:/xampp/htdocs
+[08-Sep-2025 23:37:51 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[08-Sep-2025 23:37:51 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[08-Sep-2025 23:38:31 Europe/Berlin] === Enhanced Recording Upload Started ===
+[08-Sep-2025 23:38:31 Europe/Berlin] Request Method: POST
+[08-Sep-2025 23:38:31 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[08-Sep-2025 23:38:31 Europe/Berlin] FILES Data: ["video"]
+[08-Sep-2025 23:38:31 Europe/Berlin] Document Root: C:/xampp/htdocs
+[08-Sep-2025 23:38:31 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[08-Sep-2025 23:38:31 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[08-Sep-2025 23:39:15 Europe/Berlin] === Enhanced Recording Upload Started ===
+[08-Sep-2025 23:39:15 Europe/Berlin] Request Method: POST
+[08-Sep-2025 23:39:15 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[08-Sep-2025 23:39:15 Europe/Berlin] FILES Data: ["video"]
+[08-Sep-2025 23:39:15 Europe/Berlin] Document Root: C:/xampp/htdocs
+[08-Sep-2025 23:39:15 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[08-Sep-2025 23:39:15 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 01:52:44 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 01:52:44 Europe/Berlin] Request Method: POST
+[09-Sep-2025 01:52:44 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 01:52:44 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 01:52:44 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 01:52:44 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 01:52:44 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 01:53:19 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 01:53:19 Europe/Berlin] Request Method: POST
+[09-Sep-2025 01:53:19 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 01:53:19 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 01:53:19 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 01:53:19 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 01:53:19 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 01:54:00 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 01:54:00 Europe/Berlin] Request Method: POST
+[09-Sep-2025 01:54:00 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 01:54:00 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 01:54:00 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 01:54:00 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 01:54:00 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 01:54:36 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 01:54:36 Europe/Berlin] Request Method: POST
+[09-Sep-2025 01:54:36 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 01:54:36 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 01:54:36 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 01:54:36 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 01:54:36 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 01:55:21 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 01:55:21 Europe/Berlin] Request Method: POST
+[09-Sep-2025 01:55:21 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 01:55:21 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 01:55:21 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 01:55:21 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 01:55:21 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 01:56:01 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 01:56:01 Europe/Berlin] Request Method: POST
+[09-Sep-2025 01:56:01 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 01:56:01 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 01:56:01 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 01:56:01 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 01:56:01 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 01:56:40 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 01:56:40 Europe/Berlin] Request Method: POST
+[09-Sep-2025 01:56:40 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 01:56:40 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 01:56:40 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 01:56:40 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 01:56:40 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 02:25:18 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 02:25:18 Europe/Berlin] Request Method: POST
+[09-Sep-2025 02:25:18 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 02:25:18 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 02:25:18 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 02:25:18 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 02:25:18 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 02:25:56 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 02:25:56 Europe/Berlin] Request Method: POST
+[09-Sep-2025 02:25:56 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 02:25:56 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 02:25:56 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 02:25:56 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 02:25:56 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 02:30:40 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 02:30:40 Europe/Berlin] Request Method: POST
+[09-Sep-2025 02:30:40 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 02:30:40 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 02:30:40 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 02:30:40 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 02:30:40 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 02:31:27 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 02:31:27 Europe/Berlin] Request Method: POST
+[09-Sep-2025 02:31:27 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 02:31:27 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 02:31:27 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 02:31:27 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 02:31:27 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 02:32:20 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 02:32:20 Europe/Berlin] Request Method: POST
+[09-Sep-2025 02:32:20 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 02:32:20 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 02:32:20 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 02:32:20 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 02:32:20 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 02:32:50 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 02:32:50 Europe/Berlin] Request Method: POST
+[09-Sep-2025 02:32:50 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 02:32:50 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 02:32:50 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 02:32:50 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 02:32:50 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 02:33:28 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 02:33:28 Europe/Berlin] Request Method: POST
+[09-Sep-2025 02:33:28 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 02:33:28 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 02:33:28 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 02:33:28 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 02:33:28 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 02:34:07 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 02:34:07 Europe/Berlin] Request Method: POST
+[09-Sep-2025 02:34:07 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 02:34:07 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 02:34:07 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 02:34:07 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 02:34:07 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 02:34:50 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 02:34:50 Europe/Berlin] Request Method: POST
+[09-Sep-2025 02:34:50 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 02:34:50 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 02:34:50 Europe/Berlin] Document Root: C:/xampp/htdocs
+[09-Sep-2025 02:34:50 Europe/Berlin] Project Root: C:/xampp/htdocs/Career Connect/Career-Connect
+[09-Sep-2025 02:34:50 Europe/Berlin] Web Root: /Career Connect/Career-Connect/
+[09-Sep-2025 03:31:49 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 03:31:49 Europe/Berlin] Request Method: 
+[09-Sep-2025 03:31:49 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript","test"]
+[09-Sep-2025 03:31:49 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 03:31:49 Europe/Berlin] Upload error: Invalid request method: 
+[09-Sep-2025 03:31:49 Europe/Berlin] Stack trace: #0 C:\xampp\htdocs\Career Connect\Career-Connect\simulate_js_upload.php(51): include()
+#1 {main}
+[09-Sep-2025 03:31:49 Europe/Berlin] === Enhanced Recording Upload Ended ===
+[09-Sep-2025 03:33:54 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 03:33:54 Europe/Berlin] Request Method: POST
+[09-Sep-2025 03:33:54 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript","test"]
+[09-Sep-2025 03:33:54 Europe/Berlin] FILES Data: ["video"]
+[09-Sep-2025 16:54:04 Europe/Berlin] === Enhanced Recording Upload Started ===
+[09-Sep-2025 16:54:04 Europe/Berlin] Request Method: POST
+[09-Sep-2025 16:54:04 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[09-Sep-2025 16:54:04 Europe/Berlin] FILES Data: ["video"]
+[10-Sep-2025 11:09:39 Europe/Berlin] === Enhanced Recording Upload Started ===
+[10-Sep-2025 11:09:39 Europe/Berlin] Request Method: POST
+[10-Sep-2025 11:09:39 Europe/Berlin] POST Data: ["conversationTurn","questionType","currentEssentialQuestion","duration","token","registrationId","transcript"]
+[10-Sep-2025 11:09:39 Europe/Berlin] FILES Data: ["video"]
